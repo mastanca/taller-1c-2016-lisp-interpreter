@@ -5,8 +5,8 @@
  *      Author: mastanca
  */
 
-#ifndef SRC_LISP_FUNCTION_CONSTANTS_H_
-#define SRC_LISP_FUNCTION_CONSTANTS_H_
+#ifndef SRC_LISPFUNCTIONCONSTANTS_H_
+#define SRC_LISPFUNCTIONCONSTANTS_H_
 
 
 #define LISP_SUM "+"
@@ -27,4 +27,4 @@
 #define LISP_SYNC "sync"
 
 
-#endif /* SRC_LISP_FUNCTION_CONSTANTS_H_ */
+#endif /* SRC_LISPFUNCTIONCONSTANTS_H_ */
