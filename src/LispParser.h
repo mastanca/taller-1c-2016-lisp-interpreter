@@ -17,7 +17,9 @@ private:
 	std::string openingParenthesis, closingParenthesis, insideParenthesisString;
 	std::size_t openingParenthesisPosition, closingParenthesisPosition;
 public:
-	LispParser();
+	LispParser() : openingParenthesis("("), closingParenthesis(")"),
+		insideParenthesisString(""), openingParenthesisPosition(-1),
+		closingParenthesisPosition(-1) {}
 	int parseLispLine(std::string lispLine);
 	virtual ~LispParser();
 };
