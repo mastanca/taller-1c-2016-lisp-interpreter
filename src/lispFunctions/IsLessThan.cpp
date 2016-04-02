@@ -5,11 +5,11 @@
  *      Author: mastanca
  */
 
-#include "isLessThan.h"
+#include "IsLessThan.h"
 
-isLessThan::~isLessThan() {
+IsLessThan::~IsLessThan() {
 }
 
-void isLessThan::evaluate() {
+void IsLessThan::evaluate() {
 	this->result = (this->arg1 < this->arg2);
 }

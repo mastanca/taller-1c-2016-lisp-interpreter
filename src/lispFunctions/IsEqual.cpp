@@ -5,12 +5,12 @@
  *      Author: mastanca
  */
 
-#include "isEqual.h"
+#include "IsEqual.h"
 
-void isEqual::evaluate() {
+void IsEqual::evaluate() {
 	this->result = (this->arg1 == this->arg2);
 }
 
-isEqual::~isEqual() {
+IsEqual::~IsEqual() {
 }
 

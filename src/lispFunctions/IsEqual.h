@@ -10,14 +10,14 @@
 
 #include "Function.h"
 
-class isEqual: public Function {
+class IsEqual: public Function {
 private:
 	int arg1, arg2;
 	bool &result;
 public:
-	isEqual(int arg1, int arg2, bool &result) : arg1(arg1), arg2(arg2),
+	IsEqual(int arg1, int arg2, bool &result) : arg1(arg1), arg2(arg2),
 	result(result) {}
-	virtual ~isEqual();
+	virtual ~IsEqual();
 	void evaluate();
 };
 

@@ -5,11 +5,11 @@
  *      Author: mastanca
  */
 
-#include "isGreaterThan.h"
+#include "IsGreaterThan.h"
 
-isGreaterThan::~isGreaterThan() {
+IsGreaterThan::~IsGreaterThan() {
 }
 
-void isGreaterThan::evaluate() {
+void IsGreaterThan::evaluate() {
 	this->result = (this->arg1 > this->arg2);
 }

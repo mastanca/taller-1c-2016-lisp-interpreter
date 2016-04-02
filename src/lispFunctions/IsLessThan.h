@@ -10,14 +10,14 @@
 
 #include "Function.h"
 
-class isLessThan: public Function {
+class IsLessThan: public Function {
 private:
 	int arg1, arg2;
 	bool &result;
 public:
-	isLessThan(int arg1, int arg2, bool &result) : arg1(arg1), arg2(arg2),
+	IsLessThan(int arg1, int arg2, bool &result) : arg1(arg1), arg2(arg2),
 	result(result) {}
-	virtual ~isLessThan();
+	virtual ~IsLessThan();
 	void evaluate();
 };
 
