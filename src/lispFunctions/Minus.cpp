@@ -7,7 +7,7 @@
 
 #include "Minus.h"
 
-void Minus::run() {
+void Minus::evaluate() {
 	this->result = this->arg1 - this->arg2;
 }
 

@@ -7,7 +7,7 @@
 
 #include "Sum.h"
 
-void Sum::run() {
+void Sum::evaluate() {
 	this->result = this->arg1 + this->arg2;
 }
 

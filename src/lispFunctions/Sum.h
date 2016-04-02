@@ -8,14 +8,16 @@
 #ifndef SRC_LISPFUNCTIONS_SUM_H_
 #define SRC_LISPFUNCTIONS_SUM_H_
 
-class Sum {
+#include "Function.h"
+
+class Sum : public Function {
 private:
 	int arg1, arg2;
 	int &result;
 public:
 	Sum(int arg1, int arg2, int &result) : arg1(arg1), arg2(arg2),
 		result(result) {}
-	void run();
+	void evaluate();
 	virtual ~Sum();
 };
 
