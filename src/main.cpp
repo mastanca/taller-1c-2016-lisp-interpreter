@@ -18,6 +18,7 @@
 #include "lispFunctions/Divide.h"
 #include "lispFunctions/List.h"
 #include "lispFunctions/Append.h"
+#include "lispFunctions/Car.h"
 
 
 int main(){
@@ -53,7 +54,11 @@ int main(){
 	anAppend.getResultingList().evaluate();
 	std::cout << result << std::endl;
 	std::cout << result2 << std::endl;
-	std::cout << result3 << std::endl;
+
+	Expression* result6 = NULL;
+
+	Car aCar = Car(aList, result6);
+	aCar.evaluate();
 
 
 	return 0;
