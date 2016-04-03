@@ -10,21 +10,22 @@
 
 #include "Function.h"
 #include <stddef.h>
-#include <vector>
+#include "List.h"
 
 
 // TODO: Test
 class Append: public Function {
 private:
-	std::vector<Expression*> list1;
-	std::vector<Expression*> list2;
-	std::vector<Expression*> resultingList;
+	List list1;
+	List list2;
+	List resultingList;
 public:
-	Append(std::vector<Expression*> list1, std::vector<Expression*> list2,
-			std::vector<Expression*> resultingList) : list1(list1),
+	Append(List list1, List list2,
+			List resultingList) : list1(list1),
 			list2(list2), resultingList(resultingList) {}
 	virtual ~Append();
 	void evaluate();
+	List& getResultingList();
 };
 
 #endif /* SRC_LISPFUNCTIONS_APPEND_H_ */

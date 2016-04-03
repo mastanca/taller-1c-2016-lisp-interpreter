@@ -11,14 +11,21 @@ Append::~Append() {
 }
 
 void Append::evaluate() {
-	std::vector<Expression*>::iterator v = this->list1.begin();
-	while( v != this->list1.end()) {
-		this->resultingList.push_back(*v);
+	std::vector<Expression*> listData = this->list1.getData();
+	std::vector<Expression*>::iterator v = listData.begin();
+	while( v != listData.end()) {
+		this->resultingList.getData().push_back(*v);
 		v++;
 	}
-	v = this->list2.begin();
-	while( v != this->list2.end()) {
-		this->resultingList.push_back(*v);
+
+	listData = this->list2.getData();
+	v = listData.begin();
+	while (v != listData.end()) {
+		this->resultingList.getData().push_back(*v);
 		v++;
 	}
+}
+
+List& Append::getResultingList() {
+	return resultingList;
 }

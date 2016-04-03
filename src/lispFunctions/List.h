@@ -11,15 +11,18 @@
 #include <vector>
 #include "Function.h"
 
-// TODO: Test
+// TODO: Test, right now list is putting in every of its members result that
+// functions result
 class List: public Function {
 private:
 	std::vector<Expression*> data;
 	int &result;
 public:
-	List(std::vector<Expression*> data) : data(data), result(result) {}
+	List(std::vector<Expression*> data, int result) :
+			data(data), result(result) {}
 	virtual ~List();
 	void evaluate();
+	std::vector<Expression*>& getData();
 };
 
 #endif /* SRC_LISPFUNCTIONS_LIST_H_ */
