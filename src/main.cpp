@@ -19,6 +19,7 @@
 #include "lispFunctions/List.h"
 #include "lispFunctions/Append.h"
 #include "lispFunctions/Car.h"
+#include "lispFunctions/Cdr.h"
 
 
 int main(){
@@ -59,6 +60,9 @@ int main(){
 
 	Car aCar = Car(aList, result6);
 	aCar.evaluate();
+
+	List* resultingList2 = NULL;
+	Cdr aCdr = Cdr(anAppend.getResultingList(), resultingList2);
 
 
 	return 0;
