@@ -25,6 +25,7 @@ int LispParser::parseLispLine(std::string lispLine) {
 //		std::cout << this->openingParenthesisPosition << std::endl;
 //		std::cout << this->closingParenthesisPosition << std::endl;
 		std::cout << this->insideParenthesisString << std::endl;
+//		std::cout << this->getExpression(this->insideParenthesisString) << std::endl;
 
 		stringToParse.erase(this->openingParenthesisPosition,
 				this->closingParenthesisPosition -
@@ -36,4 +37,40 @@ int LispParser::parseLispLine(std::string lispLine) {
 }
 
 LispParser::~LispParser() {
+}
+
+std::string LispParser::getExpression(std::string &string) {
+	if (string == "+")
+		return "+";
+	if (string == "-")
+		return "-";
+	if (string == "*")
+		return "*";
+	if (string == "/")
+		return "/";
+	if (string == "=")
+		return "=";
+	if (string == ">")
+		return ">";
+	if (string == "<")
+		return "<";
+	if (string == "car")
+		return "car";
+	if (string == "cdr")
+		return "cdr";
+	if (string == "append")
+		return "append";
+	if (string == "if")
+		return "if";
+	if (string == "defun")
+		return "defun";
+	if (string == "print")
+		return "print";
+	if (string == "setq")
+		return "setq";
+	if (string == "list")
+		return "list";
+	if (string == "sync")
+		return "sync";
+	return 0;
 }
