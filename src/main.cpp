@@ -20,6 +20,7 @@
 #include "lispFunctions/Append.h"
 #include "lispFunctions/Car.h"
 #include "lispFunctions/Cdr.h"
+#include "Constant.h"
 
 
 int main(){
@@ -63,6 +64,11 @@ int main(){
 
 	List* resultingList2 = NULL;
 	Cdr aCdr = Cdr(anAppend.getResultingList(), resultingList2);
+
+	int resultConstant = 0;
+	Constant aConstant = Constant(5, resultConstant);
+	aConstant.evaluate();
+	std::cout << resultConstant << std::endl;
 
 
 	return 0;
