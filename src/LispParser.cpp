@@ -27,14 +27,15 @@ int LispParser::parseLispLine(std::string lispLine) {
 				this->openingParenthesisPosition - 1);
 
 		std::cout << this->insideParenthesisString << std::endl;
-		std::istringstream iss(insideParenthesisString);
-		std::string token;
-		while (std::getline(iss, token, ' '))
-		{
-		    std::cout << this->getExpression(token) << std::endl;
-
-		}
-//		Expression* anExpression = this->getExpression(this->insideParenthesisString);
+//		std::istringstream iss(insideParenthesisString);
+//		std::string token;
+//		while (std::getline(iss, token, ' '))
+//		{
+//		    std::cout << this->getExpression(token) << std::endl;
+//
+//		}
+		Expression* anExpression = this->getExpression(this->insideParenthesisString);
+		anExpression->evaluate();
 
 		stringToParse.erase(this->openingParenthesisPosition,
 				this->closingParenthesisPosition -
@@ -48,15 +49,16 @@ int LispParser::parseLispLine(std::string lispLine) {
 LispParser::~LispParser() {
 }
 
-std::string LispParser::getExpression(std::string &string) {
+Expression* LispParser::getExpression(std::string &string) {
+	std::cout << "soy el que llega a get exp " << string << std::endl;
 	if (string == "+")
-		return "I am a plus";
+		return new Sum(this->parseExpressionBody(string));
 	if (string == "-")
-		return "I am a minus";
+		return 0;
 	if (string == "*")
-		return "I multiply";
+		return 0;
 	if (string == "/")
-		return "I divide";
+		return 0;
 	if (string == "=")
 		return 0;
 	if (string == ">")
@@ -81,8 +83,21 @@ std::string LispParser::getExpression(std::string &string) {
 		return 0;
 	if (string == "sync")
 		return 0;
-	std::ostringstream oss;
-	oss << "I am a number ";
-	oss << string;
-	return oss.str();
+//	return atoi(string.c_str());
+	return 0;
+}
+
+std::vector<Expression*> parseExpressionBody(std::string body){
+	std::vector<Expression*> bodyEnvironment;
+	std::string::iterator it = body.begin();
+	while(it < body.end()){
+		if (*it == "(" || *it == " "){
+			++it;
+			continue;
+		}
+
+		++it;
+	}
+
+
 }

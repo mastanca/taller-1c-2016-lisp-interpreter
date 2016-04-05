@@ -10,6 +10,7 @@
 
 #include <cstddef>
 #include <string>
+#include "Expression.h"
 
 class LispParser {
 private:
@@ -25,7 +26,8 @@ public:
 	}
 	int parseLispLine(std::string lispLine);
 	virtual ~LispParser();
-	std::string getExpression(std::string &string);
+	Expression* getExpression(std::string &string);
+	std::vector<Expression*> parseExpressionBody(std::string body);
 };
 
 #endif /* SRC_LISPPARSER_H_ */
