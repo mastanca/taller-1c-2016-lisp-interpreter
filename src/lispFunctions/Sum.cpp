@@ -13,3 +13,7 @@ void Sum::evaluate() {
 
 Sum::~Sum() {
 }
+
+int Sum::getResult() const {
+	return result;
+}

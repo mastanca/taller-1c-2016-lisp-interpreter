@@ -23,47 +23,10 @@
 #include "Constant.h"
 
 int main(){
-	std::string testing = "(defun op1 (lista) (+ (car lista) (op1 "
-			"(cdr lista))))";
+	std::string testing = "(+ (+ 2 (- 10 7) (* 2 2)))";
 	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser = LispParser();
 	aLispParser.parseLispLine(testing);
-
-	// Append testing
-	int result = 0;
-	int arg1 = 8;
-	int arg2 = 10;
-	Sum aSum = Sum(arg1, arg2, result);
-	std::vector<Expression*> data;
-	data.push_back(&aSum);
-	List aList = List(data, result);
-
-	int result2 = 0;
-	int arg3 = 5;
-	int arg4 = 5;
-	Multiply aMultiply = Multiply(arg3, arg4, result2);
-	std::vector<Expression*> data2;
-	data2.push_back(&aMultiply);
-	List anotherList = List(data2, result2);
-
-	std::vector<Expression*> data3;
-	int result3 = 0;
-	List resultingList = List(data3, result3);
-	Append anAppend = Append(aList, anotherList, resultingList);
-	anAppend.evaluate();
-
-	anAppend.getResultingList().evaluate();
-	std::cout << result << std::endl;
-	std::cout << result2 << std::endl;
-
-	Expression* result6 = NULL;
-
-	Car aCar = Car(aList, result6);
-	aCar.evaluate();
-
-	List* resultingList2 = NULL;
-	Cdr aCdr = Cdr(anAppend.getResultingList(), resultingList2);
-
 	return 0;
 }
 

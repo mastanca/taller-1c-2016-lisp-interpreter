@@ -8,6 +8,9 @@
 #ifndef SRC_ENVIRONMENT_H_
 #define SRC_ENVIRONMENT_H_
 
+#include <vector>
+#include "Expression.h"
+
 class Environment {
 private:
 	std::vector<Expression*> environment;

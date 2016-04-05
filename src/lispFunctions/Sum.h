@@ -13,12 +13,12 @@
 class Sum : public Function {
 private:
 	int arg1, arg2;
-	int &result;
+	int result;
 public:
-	Sum(int arg1, int arg2, int &result) : arg1(arg1), arg2(arg2),
-		result(result) {}
+	Sum(int arg1, int arg2) : arg1(arg1), arg2(arg2), result(0){}
 	void evaluate();
 	virtual ~Sum();
+	int getResult() const;
 };
 
 

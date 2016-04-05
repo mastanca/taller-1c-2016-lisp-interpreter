@@ -8,16 +8,15 @@
 #ifndef SRC_LISPPARSER_H_
 #define SRC_LISPPARSER_H_
 
+#include <cstddef>
 #include <string>
-#include <iostream>
-#include "lispFunctionConstants.h"
-#include "Expression.h"
 
 class LispParser {
 private:
 	std::string openingParenthesis, closingParenthesis, insideParenthesisString;
 	std::size_t openingParenthesisPosition, closingParenthesisPosition;
 //	std::vector<std::string> knownLispFunctions;
+	bool isParam(std::string line);
 public:
 	LispParser() : openingParenthesis("("), closingParenthesis(")"),
 		insideParenthesisString(""), openingParenthesisPosition(-1),
