@@ -19,10 +19,10 @@ int main(){
 	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser;
 	std::string parsedLine(aLispParser.prepareLineForParsing(&testing));
-	std::cout << "New string: " << parsedLine << std::endl;
+	std::vector<std::string>* tokensVector;
 	Tokenizer tokenizer;
-	tokenizer.tokenize(parsedLine);
-//	aLispParser.parseLispLine(testing);
+	tokensVector = tokenizer.tokenize(parsedLine);
+	aLispParser.parseLispLine(tokensVector);
 	return 0;
 }
 

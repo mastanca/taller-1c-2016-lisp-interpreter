@@ -13,12 +13,9 @@
 LispParser::LispParser() {
 }
 
-int LispParser::parseLispLine(std::string lispLine) {
-	std::string stringToParse = lispLine;
-	bool isEmptyString = false;
-
-	while (!isEmptyString){
-
+int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
+	for (std::vector<std::string>::iterator it = lispLine->begin() ; it != lispLine->end(); ++it){
+		std::cout << getExpression(*it) << std::endl;
 	}
 	return EXIT_SUCCESS;
 }
@@ -40,41 +37,46 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 
 LispParser::~LispParser() {
 }
-//std::string LispParser::getExpression(std::string &string) {
-//	if (string == "+")
-//		return "I am a plus";
-//	if (string == "-")
-//		return "I am a minus";
-//	if (string == "*")
-//		return "I multiply";
-//	if (string == "/")
-//		return "I divide";
-//	if (string == "=")
-//		return 0;
-//	if (string == ">")
-//		return 0;
-//	if (string == "<")
-//		return 0;
-//	if (string == "car")
-//		return 0;
-//	if (string == "cdr")
-//		return 0;
-//	if (string == "append")
-//		return 0;
-//	if (string == "if")
-//		return 0;
-//	if (string == "defun")
-//		return 0;
-//	if (string == "print")
-//		return 0;
-//	if (string == "setq")
-//		return 0;
-//	if (string == "list")
-//		return 0;
-//	if (string == "sync")
-//		return 0;
-//	std::ostringstream oss;
-//	oss << "I am a number ";
-//	oss << string;
-//	return oss.str();
-//}
+
+std::string LispParser::getExpression(std::string &string) {
+	if (string == "(")
+		return "Opening expression";
+	if (string == ")")
+		return "Closing expression";
+	if (string == "+")
+		return "I am a plus";
+	if (string == "-")
+		return "I am a minus";
+	if (string == "*")
+		return "I multiply";
+	if (string == "/")
+		return "I divide";
+	if (string == "=")
+		return "I am an equals";
+	if (string == ">")
+		return "I am a bigger than";
+	if (string == "<")
+		return "I am a less than";
+	if (string == "car")
+		return "I am a car";
+	if (string == "cdr")
+		return "I am a cdr";
+	if (string == "append")
+		return "I am an append";
+	if (string == "if")
+		return "I am an if";
+	if (string == "defun")
+		return "I am a defun";
+	if (string == "print")
+		return "I am a print";
+	if (string == "setq")
+		return "I am a setq";
+	if (string == "list")
+		return "I am a list";
+	if (string == "sync")
+		return "I am a list";
+	std::ostringstream oss;
+	oss << "I am a number ";
+	oss << string;
+	return oss.str();
+}
