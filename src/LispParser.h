@@ -8,24 +8,21 @@
 #ifndef SRC_LISPPARSER_H_
 #define SRC_LISPPARSER_H_
 
-#include <cstddef>
+#define OPENING_PARENTHESIS '('
+#define CLOSING_PARENTHESIS ')'
+
 #include <string>
 
 class LispParser {
-private:
-	std::string openingParenthesis, closingParenthesis, insideParenthesisString;
-	std::size_t openingParenthesisPosition, closingParenthesisPosition;
-//	std::vector<std::string> knownLispFunctions;
-	bool isParam(std::string line);
 public:
-	LispParser() : openingParenthesis("("), closingParenthesis(")"),
-		insideParenthesisString(""), openingParenthesisPosition(-1),
-		closingParenthesisPosition(-1) {
+	// Constructor
+	LispParser();
+	// Prepares line for parsing by adding whitespace between characters
+	std::string prepareLineForParsing(std::string* lispLine);
 
-	}
 	int parseLispLine(std::string lispLine);
+	// Destroyer
 	virtual ~LispParser();
-	std::string getExpression(std::string &string);
 };
 
 #endif /* SRC_LISPPARSER_H_ */
