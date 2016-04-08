@@ -9,13 +9,15 @@
 #define SRC_LISPFUNCTIONS_SUM_H_
 
 #include "Function.h"
+#include "../Expression.h"
+#include <string>
 
 class Sum : public Function {
 private:
-	int arg1, arg2;
+	std::vector<Expression*> args;
 	int result;
 public:
-	Sum(int arg1, int arg2) : arg1(arg1), arg2(arg2), result(0){}
+	Sum(std::vector<Expression*> functionBody) : args(functionBody), result(0) {}
 	void evaluate();
 	virtual ~Sum();
 	int getResult() const;

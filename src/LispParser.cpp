@@ -10,6 +10,9 @@
 #include <cstdlib>
 #include <sstream>
 
+LispParser::LispParser() {
+}
+
 int LispParser::parseLispLine(std::string lispLine) {
 	std::string stringToParse = lispLine;
 	bool isEmptyString = false;
@@ -35,12 +38,8 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 	return newString.str();
 }
 
-LispParser::LispParser() {
-}
-
 LispParser::~LispParser() {
 }
-
 //std::string LispParser::getExpression(std::string &string) {
 //	if (string == "+")
 //		return "I am a plus";

@@ -12,6 +12,7 @@
 #define CLOSING_PARENTHESIS ')'
 
 #include <string>
+#include "Expression.h"
 
 class LispParser {
 public:
