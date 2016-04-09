@@ -46,25 +46,25 @@ std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
 	++deepLevel;
 	std::stringstream returningExpression;
 	int i = 0;
-	bool quit = false;
-	while (!quit){
+//	bool quit = false;
+	for (std::vector<std::string>::iterator it = lispLine->begin() ; it != lispLine->end(); ++it){
 		std::string element = lispLine->at(i);
-		if (isNumeric(element, 10)){
-			// If its a number then append and return
-			returningExpression << element;
-			std::cout << returningExpression.str() << std::endl;
-		} else 	if (getFunction(lispLine->at(i + 1)) != ""){
-			// If its a function then append symbol and get expression of following element
-			returningExpression << getFunction(lispLine->at(i + 1));
-			std::cout << returningExpression.str() << std::endl;
-			std::vector<std::string> subvec = getSubVector(lispLine, i + 2);
-			returningExpression << getExpression(&subvec);
-			std::cout << returningExpression.str() << std::endl;
-		} else 	if (element == ")"){
+		if (element == ")"){
 			// If is a closing one append and return
 			returningExpression << ")";
 			std::cout << returningExpression.str() << std::endl;
-			quit = true;
+//			quit = true;
+		} else if (isNumeric(element, 10)){
+			// If its a number then append and return
+			returningExpression << element;
+			std::cout << returningExpression.str() << std::endl;
+		} else 	if (getFunction(element) != ""){
+			// If its a function then append symbol and get expression of following element
+			returningExpression << getFunction(element);
+			std::cout << returningExpression.str() << std::endl;
+			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
+			returningExpression << getExpression(&subvec);
+			std::cout << returningExpression.str() << std::endl;
 		} else 	if (element == "("){
 			// if its an opening one recursive
 			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
@@ -73,6 +73,7 @@ std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
 		}
 		++i;
 	}
+
 	--deepLevel;
 	return returningExpression.str();
 }
