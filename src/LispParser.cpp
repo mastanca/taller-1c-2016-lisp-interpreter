@@ -9,14 +9,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
+#include <algorithm>
 
 LispParser::LispParser() {
 }
 
 int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
-	for (std::vector<std::string>::iterator it = lispLine->begin() ; it != lispLine->end(); ++it){
-		std::cout << getExpression(*it) << std::endl;
-	}
+	std::string expression = getExpression(lispLine);
+	std::cout << expression << std::endl;
+
 	return EXIT_SUCCESS;
 }
 
@@ -38,11 +39,35 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 LispParser::~LispParser() {
 }
 
-std::string LispParser::getExpression(std::string &string) {
-	if (string == "(")
-		return "Opening expression";
-	if (string == ")")
-		return "Closing expression";
+std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
+	std::stringstream returningExpression;
+	uint i = 0;
+	std::string element = lispLine->at(i);
+	if (isNumeric(element, 10)){
+		// If its a number then append and return
+		returningExpression << element;
+		std::cout << returningExpression.str() << std::endl;
+	} else 	if (getFunction(lispLine->at(i + 1)) != ""){
+		// If its a function then append symbol and get expression of following element
+		returningExpression << getFunction(lispLine->at(i + 1));
+		std::cout << returningExpression.str() << std::endl;
+		std::vector<std::string> subvec = getSubVector(lispLine, i + 2);
+		returningExpression << getExpression(&subvec);
+		std::cout << returningExpression.str() << std::endl;
+	} else 	if (element == ")"){
+		// If is a closing one append and return
+		returningExpression << ")";
+		std::cout << returningExpression.str() << std::endl;
+	} else 	if (element == "("){
+		// if its an opening one recursive
+		std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
+		returningExpression << getExpression(&subvec);
+		std::cout << returningExpression.str() << std::endl;
+	}
+	return returningExpression.str();
+}
+
+std::string LispParser::getFunction(std::string &string) {
 	if (string == "+")
 		return "I am a plus";
 	if (string == "-")
@@ -74,9 +99,24 @@ std::string LispParser::getExpression(std::string &string) {
 	if (string == "list")
 		return "I am a list";
 	if (string == "sync")
-		return "I am a list";
-	std::ostringstream oss;
-	oss << "I am a number ";
-	oss << string;
-	return oss.str();
+		return "I am a sync";
+	return "";
+}
+
+std::string LispParser::getConstant(std::string &string) {
+	if (isdigit(atoi(string.c_str())))
+		return string;
+	return "";
+}
+
+bool LispParser::isNumeric( std::string pszInput, int nNumberBase ){
+	std::string base = "0123456789ABCDEF";
+	std::string input = pszInput;
+
+	return (input.find_first_not_of(base.substr(0, nNumberBase)) == std::string::npos);
+}
+
+std::vector<std::string> LispParser::getSubVector(std::vector<std::string>* vector, unsigned int offset){
+	std::vector<std::string> newVec(vector->begin() + offset, vector->end());
+	return newVec;
 }

@@ -16,7 +16,11 @@
 
 class LispParser {
 private:
-	std::string getExpression(std::string &string);
+	std::string getExpression(std::vector<std::string>* lispLine);
+	std::string getFunction(std::string &string);
+	std::string getConstant(std::string &string);
+	bool isNumeric(std::string pszInput, int nNumberBase );
+	std::vector<std::string> getSubVector(std::vector<std::string>* vector, unsigned int offset);
 public:
 	// Constructor
 	LispParser();
