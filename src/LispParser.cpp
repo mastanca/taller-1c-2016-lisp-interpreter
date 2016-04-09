@@ -39,31 +39,41 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 LispParser::~LispParser() {
 }
 
+
+int deepLevel = 0;
+
 std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
+	++deepLevel;
 	std::stringstream returningExpression;
-	uint i = 0;
-	std::string element = lispLine->at(i);
-	if (isNumeric(element, 10)){
-		// If its a number then append and return
-		returningExpression << element;
-		std::cout << returningExpression.str() << std::endl;
-	} else 	if (getFunction(lispLine->at(i + 1)) != ""){
-		// If its a function then append symbol and get expression of following element
-		returningExpression << getFunction(lispLine->at(i + 1));
-		std::cout << returningExpression.str() << std::endl;
-		std::vector<std::string> subvec = getSubVector(lispLine, i + 2);
-		returningExpression << getExpression(&subvec);
-		std::cout << returningExpression.str() << std::endl;
-	} else 	if (element == ")"){
-		// If is a closing one append and return
-		returningExpression << ")";
-		std::cout << returningExpression.str() << std::endl;
-	} else 	if (element == "("){
-		// if its an opening one recursive
-		std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
-		returningExpression << getExpression(&subvec);
-		std::cout << returningExpression.str() << std::endl;
+	int i = 0;
+	bool quit = false;
+	while (!quit){
+		std::string element = lispLine->at(i);
+		if (isNumeric(element, 10)){
+			// If its a number then append and return
+			returningExpression << element;
+			std::cout << returningExpression.str() << std::endl;
+		} else 	if (getFunction(lispLine->at(i + 1)) != ""){
+			// If its a function then append symbol and get expression of following element
+			returningExpression << getFunction(lispLine->at(i + 1));
+			std::cout << returningExpression.str() << std::endl;
+			std::vector<std::string> subvec = getSubVector(lispLine, i + 2);
+			returningExpression << getExpression(&subvec);
+			std::cout << returningExpression.str() << std::endl;
+		} else 	if (element == ")"){
+			// If is a closing one append and return
+			returningExpression << ")";
+			std::cout << returningExpression.str() << std::endl;
+			quit = true;
+		} else 	if (element == "("){
+			// if its an opening one recursive
+			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
+			returningExpression << getExpression(&subvec);
+			std::cout << returningExpression.str() << std::endl;
+		}
+		++i;
 	}
+	--deepLevel;
 	return returningExpression.str();
 }
 
