@@ -11,10 +11,9 @@
 #include <sstream>
 #include <algorithm>
 
-
 int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
 	std::string expression = getExpression(lispLine);
-	std::cout << expression << std::endl;
+//	std::cout << expression << std::endl;
 
 	return EXIT_SUCCESS;
 }
@@ -24,8 +23,9 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 	std::stringstream newString;
 	for (uint i = 0; i < lispLine->size(); ++i) {
 		tempChar = lispLine->at(i);
-		if (tempChar == OPENING_PARENTHESIS || tempChar == CLOSING_PARENTHESIS){
-			std::string withSpaces = (" " + std::string(sizeof(char) ,tempChar) + " ");
+		if (tempChar == OPENING_PARENTHESIS || tempChar == CLOSING_PARENTHESIS) {
+			std::string withSpaces = (" " + std::string(sizeof(char), tempChar)
+					+ " ");
 			newString << withSpaces;
 		} else {
 			newString << tempChar;
@@ -42,37 +42,34 @@ std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
 		lastPos = lispLine->size();
 	std::stringstream returningExpression;
 	int i = 0;
-//	bool quit = false;
-	for (std::vector<std::string>::iterator it = lispLine->begin() ; it != lispLine->end(); ++it){
-		while (currentPos < lastPos){
-			++currentPos;
-			std::string element = lispLine->at(i);
-			if (element == ")"){
-				// If is a closing one append and return
-				returningExpression << ")";
-				std::cout << returningExpression.str() << std::endl;
-	//			quit = true;
-			} else if (isNumeric(element, 10)){
-				// If its a number then append and return
-				returningExpression << element;
-				std::cout << returningExpression.str() << std::endl;
-			} else 	if (getFunction(element) != ""){
-				// If its a function then append symbol and get expression of following element
-				returningExpression << getFunction(element);
-				std::cout << returningExpression.str() << std::endl;
-				std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
-				returningExpression << getExpression(&subvec);
-				std::cout << returningExpression.str() << std::endl;
-			} else 	if (element == "("){
-				// if its an opening one recursive
-				std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
-				returningExpression << getExpression(&subvec);
-				std::cout << returningExpression.str() << std::endl;
-			}
-			++i;
+	while (currentPos < lastPos) {
+		++currentPos;
+		std::string element = lispLine->at(i);
+		if (element == ")") {
+			// If is a closing one append and return
+			returningExpression << ")";
+			std::cout << returningExpression.str() << std::endl;
+		} else if (isNumeric(element, 10)) {
+			// If its a number then append and return
+			returningExpression << element;
+			std::cout << returningExpression.str() << std::endl;
+		} else if (getFunction(element) != "") {
+			// If its a function then append symbol and get expression of following element
+			returningExpression << getFunction(element);
+			std::cout << returningExpression.str() << std::endl;
+			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
+			returningExpression << getExpression(&subvec);
+			std::cout << returningExpression.str() << std::endl;
+		} else if (element == "(") {
+			// if its an opening one recursive
+			returningExpression << "(";
+			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
+			returningExpression << getExpression(&subvec);
+			std::cout << returningExpression.str() << std::endl;
 		}
-
+		++i;
 	}
+
 	return returningExpression.str();
 }
 
@@ -118,14 +115,16 @@ std::string LispParser::getConstant(std::string &string) {
 	return "";
 }
 
-bool LispParser::isNumeric( std::string pszInput, int nNumberBase ){
+bool LispParser::isNumeric(std::string pszInput, int nNumberBase) {
 	std::string base = "0123456789ABCDEF";
 	std::string input = pszInput;
 
-	return (input.find_first_not_of(base.substr(0, nNumberBase)) == std::string::npos);
+	return (input.find_first_not_of(base.substr(0, nNumberBase))
+			== std::string::npos);
 }
 
-std::vector<std::string> LispParser::getSubVector(std::vector<std::string>* vector, unsigned int offset){
+std::vector<std::string> LispParser::getSubVector(
+		std::vector<std::string>* vector, unsigned int offset) {
 	std::vector<std::string> newVec(vector->begin() + offset, vector->end());
 	return newVec;
 }
