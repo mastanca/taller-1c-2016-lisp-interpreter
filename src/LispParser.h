@@ -21,9 +21,11 @@ private:
 	std::string getConstant(std::string &string);
 	bool isNumeric(std::string pszInput, int nNumberBase );
 	std::vector<std::string> getSubVector(std::vector<std::string>* vector, unsigned int offset);
+	unsigned int currentPos;
+	unsigned int lastPos;
 public:
 	// Constructor
-	LispParser();
+	LispParser() : currentPos(0), lastPos(0) {}
 	// Prepares line for parsing by adding whitespace between characters
 	std::string prepareLineForParsing(std::string* lispLine);
 	// Parse lisp line, determining expressions inside it
