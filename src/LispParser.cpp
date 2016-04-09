@@ -45,27 +45,36 @@ std::string LispParser::getExpression(std::vector<std::string>* lispLine) {
 	while (currentPos < lastPos) {
 		++currentPos;
 		std::string element = lispLine->at(i);
+
 		if (element == ")") {
-			// If is a closing one append and return
+
+			// If it's a closing one append and return
 			returningExpression << ")";
 			std::cout << returningExpression.str() << std::endl;
+
 		} else if (isNumeric(element, 10)) {
-			// If its a number then append and return
+
+			// If it's a number then append and return
 			returningExpression << element;
 			std::cout << returningExpression.str() << std::endl;
+
 		} else if (getFunction(element) != "") {
-			// If its a function then append symbol and get expression of following element
+
+			// If it's a function then append symbol and get expression of following element
 			returningExpression << getFunction(element);
 			std::cout << returningExpression.str() << std::endl;
 			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
 			returningExpression << getExpression(&subvec);
 			std::cout << returningExpression.str() << std::endl;
+
 		} else if (element == "(") {
-			// if its an opening one recursive
+
+			// if it's an opening one get recursive
 			returningExpression << "(";
 			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
 			returningExpression << getExpression(&subvec);
 			std::cout << returningExpression.str() << std::endl;
+
 		}
 		++i;
 	}
