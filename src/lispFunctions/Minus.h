@@ -11,13 +11,11 @@
 #include "Function.h"
 
 class Minus : public Function {
-private:
-	int result;
 public:
-	Minus() : Function(LISP_MINUS), result(0) {}
+	Minus() : Function(LISP_MINUS, "") {}
 	void evaluate();
 	virtual ~Minus();
-	int getResult() const;
+	std::string getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_MINUS_H_ */

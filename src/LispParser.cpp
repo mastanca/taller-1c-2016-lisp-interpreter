@@ -187,6 +187,6 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 			function->getArguments().size() << " arguments" <<
 			". My result is ";
 	function->evaluate();
-	std::cout << std::endl;
+	std::cout << function->getResult() << std::endl;
 	return function;
 }

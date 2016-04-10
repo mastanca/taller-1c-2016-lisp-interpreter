@@ -7,27 +7,28 @@
 
 #include "Sum.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <iterator>
+#include <sstream>
 #include <vector>
-
-#include "../Constant.h"
-
-
-void Sum::evaluate() {
-	int tempResult;
-	for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
-		tempResult = 0;
-		(*it)->evaluate();
-		tempResult = ((Constant*)*it)->getValue();
-		result += tempResult;
-	}
-	std::cout << result;
-}
 
 Sum::~Sum() {
 }
 
-int Sum::getResult() const {
+void Sum::evaluate() {
+	realResult = 0;
+	float tempResult = 0;
+	for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
+		(*it)->evaluate();
+		tempResult = atof(((*it)->getResult()).c_str());
+		realResult += tempResult;
+	}
+	std::stringstream ss;
+	ss << realResult;
+	result = ss.str();
+}
+
+std::string Sum::getResult() {
 	return result;
 }

@@ -11,13 +11,11 @@
 #include "Function.h"
 
 class Divide : public Function {
-private:
-	float result;
 public:
-	Divide() : Function(LISP_DIVIDE), result(0) {}
+	Divide() : Function(LISP_DIVIDE, "") {}
 	void evaluate();
 	virtual ~Divide();
-	float getResult() const;
+	std::string getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_DIVIDE_H_ */

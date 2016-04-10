@@ -7,31 +7,35 @@
 
 #include "Minus.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <iterator>
+#include <sstream>
+#include <string>
 #include <vector>
 
-#include "../Constant.h"
 
 void Minus::evaluate() {
-	int tempResult;
+	float realResult = 0;
+	float tempResult = 0;
 	for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
-		tempResult = 0;
 		(*it)->evaluate();
-		tempResult = ((Constant*)*it)->getValue();
-		if (result == 0){
-			result = tempResult;
+		tempResult = atof(((*it)->getResult()).c_str());
+		if (realResult == 0){
+			realResult = tempResult;
 		} else {
-			result -= tempResult;
+			realResult -= tempResult;
 		}
 	}
-	std::cout << result;
+	std::stringstream ss;
+	ss << realResult;
+	result = ss.str();
 }
 
 Minus::~Minus() {
 }
 
-int Minus::getResult() const {
+std::string Minus::getResult() {
 	return result;
 }
 

@@ -14,12 +14,12 @@
 
 class Sum : public Function {
 private:
-	int result;
+	float realResult;
 public:
-	Sum() : Function(LISP_SUM), result(0) {}
+	Sum() : Function(LISP_SUM, ""), realResult(0) {}
 	void evaluate();
 	virtual ~Sum();
-	int getResult() const;
+	std::string getResult();
 };
 
 

@@ -22,6 +22,7 @@ public:
 	virtual ~Expression();
 	virtual void evaluate() = 0;
 	const std::string& getIdentifier() const;
+	virtual std::string getResult() = 0;
 };
 
 #endif /* SRC_EXPRESSION_H_ */

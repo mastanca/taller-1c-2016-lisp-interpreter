@@ -7,21 +7,23 @@
 
 #include "Constant.h"
 
-#include <iostream>
 #include <sstream>
 #include <string>
 
 Constant::~Constant() {
 }
 
-int Constant::getValue() const {
-	return value;
+std::string Constant::getResult() {
+	std::stringstream ss;
+	ss << value;
+	std::string result = ss.str();
+	return result;
 }
 
 void Constant::evaluate() {
 }
 
-std::string Constant::numberToString ( int number ){
+std::string Constant::numberToString(int number){
 	std::stringstream ss;
 	ss << number;
 	return ss.str();

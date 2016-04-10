@@ -8,16 +8,17 @@
 #ifndef SRC_LISPFUNCTIONS_MULTIPLY_H_
 #define SRC_LISPFUNCTIONS_MULTIPLY_H_
 
+#include <string>
+
+#include "../lispFunctionConstants.h"
 #include "Function.h"
 
 class Multiply : public Function {
-private:
-	int result;
 public:
-	Multiply() : Function(LISP_MULTIPLY), result(0) {}
+	Multiply() : Function(LISP_MULTIPLY, "") {}
 	void evaluate();
 	virtual ~Multiply();
-	int getResult() const;
+	std::string getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_MULTIPLY_H_ */

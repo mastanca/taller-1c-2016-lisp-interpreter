@@ -18,7 +18,7 @@ public:
 	Constant(int value) : Expression(numberToString(value)), value(value){}
 	virtual ~Constant();
 	void evaluate();
-	int getValue() const;
+	std::string getResult();
 };
 
 #endif /* SRC_CONSTANT_H_ */
