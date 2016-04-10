@@ -172,16 +172,19 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 			Expression* tempExpression = getExpression(&anotherVec);
 			function->appendArgument(tempExpression);
 			it += anotherVec.size();
+			*position += anotherVec.size();
+		} else {
+			// We need a vector argument so...
+			std::vector<std::string> tempVec;
+			tempVec.push_back(*it);
+			Expression* tempExpression = getExpression(&tempVec);
+			if (tempExpression != NULL)
+				// Its NULL if it was a ")"
+				function->appendArgument(tempExpression);
+			// Keep moving original lisp line cursor
+			++*position;
 		}
-		// We need a vector argument so...
-		std::vector<std::string> tempVec;
-		tempVec.push_back(*it);
-		Expression* tempExpression = getExpression(&tempVec);
-		if (tempExpression != NULL)
-			// Its NULL if it was a ")"
-			function->appendArgument(tempExpression);
-		// Keep moving original lisp line cursor
-		++*position;
+
 	}
 	std::cout << "I am " << function->getIdentifier() << " , and have " <<
 			function->getArguments().size() << " arguments" <<
