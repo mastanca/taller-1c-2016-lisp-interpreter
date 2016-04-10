@@ -64,8 +64,7 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 		if (element == ")") {
 
 			// If it's a closing one append and return
-			std::string closing = ")";
-			std::cout << closing << std::endl;
+			std::cout << "Closing expression" << std::endl;
 
 		} else if (isNumeric(element, 10)) {
 
@@ -81,11 +80,9 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 		} else if (element == "(") {
 
 			// if it's an opening one get recursive
-			returningExpression << "(";
+			std::cout << "Opening expression" << std::endl;
 			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
 			expressionToReturn = getExpression(&subvec);
-//			expression->evaluate();
-//			std::cout << expressionToReturn->getIdentifier() << std::endl;
 
 		}
 		++i;
@@ -178,8 +175,8 @@ void LispParser::parseFunction(std::vector<std::string>* lispLine, int* position
 		// Keep moving original lisp line cursor
 		++*position;
 	}
-	std::cout << "I " << function->getIdentifier() << " have " <<
+	std::cout << "I am " << function->getIdentifier() << " , and have " <<
 			function->getArguments().size() << " arguments" <<
-			" and my result is ";
+			". My result is ";
 	function->evaluate();
 }
