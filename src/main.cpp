@@ -15,8 +15,10 @@
 #include "Tokenizer.h"
 
 int main(){
-//	std::string testing("(+ (+ 2 (- 10 7)) (* 2 2))");
-	std::string testing = "(- 25 (* 5 4))";
+//	std::string testing("(+ (+ 2 (- 10 7)) (* 2 2))");	// Not passing
+//	std::string testing = "(- 25 (* 5 4) (/ 50 10))";	// Not passing
+	std::string testing  = "(+ 5 5 (- 2 (+ 0 1)))";
+//	std::string testing = "(- 25 (* 5 4))"; // Is ok
 	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser;
 	std::string parsedLine(aLispParser.prepareLineForParsing(&testing));
