@@ -12,10 +12,10 @@
 #include <iostream>
 #include <iterator>
 #include <sstream>
-#include <vector>
 
 #include "Constant.h"
 #include "lispFunctionConstants.h"
+#include "lispFunctions/Minus.h"
 #include "lispFunctions/Sum.h"
 
 int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
@@ -43,6 +43,10 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 }
 
 LispParser::~LispParser() {
+	for (std::vector<Expression*>::iterator it = expressionPointers.begin() ; it != expressionPointers.end(); ++it){
+		if (*it != NULL)
+			delete *it;
+	}
 }
 
 Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
@@ -91,10 +95,15 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 Function* LispParser::getFunction(std::string &string) {
 	if (string == LISP_SUM){
 		Sum* aSum = new Sum();
+		expressionPointers.push_back(aSum);
 		return aSum;
 	}
-//	if (string == "-")
-//		return "I am a minus";
+	if (string == LISP_MINUS){
+		Minus* aMinus = new Minus();
+		expressionPointers.push_back(aMinus);
+		return aMinus;
+	}
+
 //	if (string == "*")
 //		return "I multiply";
 //	if (string == "/")
@@ -128,6 +137,7 @@ Function* LispParser::getFunction(std::string &string) {
 
 Expression* LispParser::getConstant(std::string &string) {
 	Constant* aConstant = new Constant(atoi(string.c_str()));
+	expressionPointers.push_back(aConstant);
 	return aConstant;
 }
 

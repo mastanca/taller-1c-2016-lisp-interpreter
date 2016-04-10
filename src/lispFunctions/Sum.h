@@ -12,13 +12,11 @@
 #include "../Expression.h"
 #include <string>
 
-#define SUM_IDENTIFIER "+"
-
 class Sum : public Function {
 private:
 	int result;
 public:
-	Sum() : Function(SUM_IDENTIFIER), result(0) {}
+	Sum() : Function(LISP_SUM), result(0) {}
 	void evaluate();
 	virtual ~Sum();
 	int getResult() const;

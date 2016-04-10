@@ -20,6 +20,7 @@ class Function;
 
 class LispParser {
 private:
+	std::vector<Expression*> expressionPointers;
 	Expression* getExpression(std::vector<std::string>* lispLine);
 	Function* getFunction(std::string &string);
 	Expression* getConstant(std::string &string);

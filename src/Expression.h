@@ -10,6 +10,8 @@
 
 #include <string>
 #include <vector>
+#include "lispFunctionConstants.h"
+
 
 class Expression {
 protected:
