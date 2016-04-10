@@ -13,11 +13,12 @@
 class Constant: public Expression {
 private:
 	int value;
-	int &result;
+	std::string numberToString ( int number );
 public:
-	Constant(int value, int &result) : value(value), result(result) {}
+	Constant(int value) : Expression(numberToString(value)), value(value){}
 	virtual ~Constant();
 	void evaluate();
+	int getValue() const;
 };
 
 #endif /* SRC_CONSTANT_H_ */

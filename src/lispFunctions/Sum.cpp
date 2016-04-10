@@ -6,11 +6,23 @@
  */
 
 #include "Sum.h"
-#include <stdlib.h>
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+
+#include "../Constant.h"
 
 
 void Sum::evaluate() {
-//	this->result = atoi((this->arg1).c_str()) + atoi((this->arg2).c_str());
+	int tempResult;
+	for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
+		tempResult = 0;
+		(*it)->evaluate();
+		tempResult = ((Constant*)*it)->getValue();
+		result += tempResult;
+	}
+	std::cout << result;
 }
 
 Sum::~Sum() {

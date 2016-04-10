@@ -12,12 +12,13 @@
 #include "../Expression.h"
 #include <string>
 
+#define SUM_IDENTIFIER "+"
+
 class Sum : public Function {
 private:
-	std::vector<Expression*> args;
 	int result;
 public:
-	Sum(std::vector<Expression*> functionBody) : args(functionBody), result(0) {}
+	Sum() : Function(SUM_IDENTIFIER), result(0) {}
 	void evaluate();
 	virtual ~Sum();
 	int getResult() const;

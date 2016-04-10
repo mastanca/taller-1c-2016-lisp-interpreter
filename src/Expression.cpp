@@ -7,9 +7,10 @@
 
 #include "Expression.h"
 
-Expression::Expression() {
-}
 
 Expression::~Expression() {
 }
 
+const std::string& Expression::getIdentifier() const {
+	return identifier;
+}

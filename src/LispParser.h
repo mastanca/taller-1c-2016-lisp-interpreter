@@ -8,6 +8,10 @@
 #ifndef SRC_LISPPARSER_H_
 #define SRC_LISPPARSER_H_
 
+#include <vector>
+
+class Function;
+
 #define OPENING_PARENTHESIS '('
 #define CLOSING_PARENTHESIS ')'
 
@@ -16,11 +20,12 @@
 
 class LispParser {
 private:
-	std::string getExpression(std::vector<std::string>* lispLine);
-	std::string getFunction(std::string &string);
-	std::string getConstant(std::string &string);
+	Expression* getExpression(std::vector<std::string>* lispLine);
+	Function* getFunction(std::string &string);
+	Expression* getConstant(std::string &string);
 	bool isNumeric(std::string pszInput, int nNumberBase );
 	std::vector<std::string> getSubVector(std::vector<std::string>* vector, unsigned int offset);
+	void parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element);
 	unsigned int currentPos;
 	unsigned int lastPos;
 public:
