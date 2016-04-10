@@ -15,7 +15,9 @@
 
 #include "Constant.h"
 #include "lispFunctionConstants.h"
+#include "lispFunctions/Divide.h"
 #include "lispFunctions/Minus.h"
+#include "lispFunctions/Multiply.h"
 #include "lispFunctions/Sum.h"
 
 int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
@@ -103,11 +105,16 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aMinus);
 		return aMinus;
 	}
-
-//	if (string == "*")
-//		return "I multiply";
-//	if (string == "/")
-//		return "I divide";
+	if (string == LISP_MULTIPLY){
+		Multiply* aMultiply = new Multiply();
+		expressionPointers.push_back(aMultiply);
+		return aMultiply;
+	}
+	if (string == LISP_DIVIDE){
+		Divide* aDivide = new Divide();
+		expressionPointers.push_back(aDivide);
+		return aDivide;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")

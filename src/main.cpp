@@ -16,7 +16,7 @@
 
 int main(){
 //	std::string testing("(+ (+ 2 (- 10 7)) (* 2 2))");
-	std::string testing = "(- 7 10)";
+	std::string testing = "(/ 15 30)";
 	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser;
 	std::string parsedLine(aLispParser.prepareLineForParsing(&testing));
