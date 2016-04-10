@@ -75,7 +75,7 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 		} else if (getFunction(element) != NULL) {
 
 			// If it's a function then append symbol and get expression of following element
-			parseFunction(lispLine, &i, &element);
+			expressionToReturn = parseFunction(lispLine, &i, &element);
 
 		} else if (element == "(") {
 
@@ -159,13 +159,21 @@ std::vector<std::string> LispParser::getSubVector(
 	return newVec;
 }
 
-void LispParser::parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element){
+Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element){
 	Function* function = getFunction(*element);
 	std::stringstream returningExpression;
 	returningExpression << function->getIdentifier();
 	std::cout << returningExpression.str() << std::endl;
 	std::vector<std::string> subvec = getSubVector(lispLine, *position + 1);
 	for (std::vector<std::string>::iterator it = subvec.begin() ; it != subvec.end(); ++it){
+		std::cout << *it << std::endl;
+		if (*it == "("){
+			std::vector<std::string> anotherVec = getSubVector(&subvec, *position + 1);
+			Expression* tempExpression = getExpression(&anotherVec);
+			function->appendArgument(tempExpression);
+			it += anotherVec.size();
+		}
+		// We need a vector argument so...
 		std::vector<std::string> tempVec;
 		tempVec.push_back(*it);
 		Expression* tempExpression = getExpression(&tempVec);
@@ -179,4 +187,6 @@ void LispParser::parseFunction(std::vector<std::string>* lispLine, int* position
 			function->getArguments().size() << " arguments" <<
 			". My result is ";
 	function->evaluate();
+	std::cout << std::endl;
+	return function;
 }

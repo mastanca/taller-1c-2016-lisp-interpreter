@@ -26,7 +26,7 @@ private:
 	Expression* getConstant(std::string &string);
 	bool isNumeric(std::string pszInput, int nNumberBase );
 	std::vector<std::string> getSubVector(std::vector<std::string>* vector, unsigned int offset);
-	void parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element);
+	Expression* parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element);
 	unsigned int currentPos;
 	unsigned int lastPos;
 public:
