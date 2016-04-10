@@ -83,7 +83,7 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 			std::cout << "Opening expression" << std::endl;
 			std::vector<std::string> subvec = getSubVector(lispLine, i + 1);
 			expressionToReturn = getExpression(&subvec);
-
+			i += subvec.size() -1;
 		}
 		++i;
 	}
@@ -155,7 +155,26 @@ bool LispParser::isNumeric(std::string pszInput, int nNumberBase) {
 
 std::vector<std::string> LispParser::getSubVector(
 		std::vector<std::string>* vector, unsigned int offset) {
-	std::vector<std::string> newVec(vector->begin() + offset, vector->end());
+	// Will return a sub vector until the end of the current level
+	uint counter = 0;
+	uint openingParenthesisCount = 0;
+	uint closingParenthesisCount = 0;
+	uint closingOnePosition = 0;
+	bool quit = false;
+	for (std::vector<std::string>::iterator it = vector->begin() + offset ; it != vector->end() && !quit; ++it){
+		if (*it == "("){
+			++openingParenthesisCount;
+		} else if (*it == ")"){
+			++closingParenthesisCount;
+		}
+		if ((closingParenthesisCount - openingParenthesisCount) == 1){
+			closingOnePosition = counter;
+			quit = true;
+		}
+		++counter;
+	}
+	// Up to here we have the position of the levels closing parenthesis
+	std::vector<std::string> newVec(vector->begin() + offset, vector->begin() + offset + closingOnePosition + 1);
 	return newVec;
 }
 
@@ -166,6 +185,7 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 	std::cout << returningExpression.str() << std::endl;
 	std::vector<std::string> subvec = getSubVector(lispLine, *position + 1);
 	for (std::vector<std::string>::iterator it = subvec.begin() ; it != subvec.end(); ++it){
+		// Its failing here when reaching the end!
 		std::cout << *it << std::endl;
 		if (*it == "("){
 			std::vector<std::string> anotherVec = getSubVector(&subvec, *position + 1);
