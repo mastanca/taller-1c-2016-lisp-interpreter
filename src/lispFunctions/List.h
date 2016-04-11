@@ -12,7 +12,7 @@
 
 class List: public Function {
 public:
-	List() : Function(LISP_LIST, "") {}
+	List() : Function(LISP_LIST, "()") {}
 	virtual ~List();
 	std::string getResult();
 	void evaluate();

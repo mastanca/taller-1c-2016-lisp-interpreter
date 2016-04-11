@@ -22,7 +22,13 @@ void Car::evaluate() {
 	} else {
 		// My arguments are only lists so we can treat them as functions to
 		// get their arguments
-		Expression* firstArg = ((Function*)(getArguments().front()))->getArguments().front();
+//		Expression* firstArg = ((Function*)(getArguments().front()))->getArguments().front();
+		Expression* myArgumentArgument;
+		Function* firstArg = ((Function*)(getArguments().front()));
+		if (firstArg->getArguments().size() != 0){
+			myArgumentArgument = firstArg->getArguments().front();
+			firstArg = (Function*)myArgumentArgument;
+		}
 		firstArg->evaluate();
 		result = firstArg->getResult();
 	}
