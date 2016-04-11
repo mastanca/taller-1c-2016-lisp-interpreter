@@ -18,6 +18,7 @@
 #include "lispFunctions/Divide.h"
 #include "lispFunctions/Minus.h"
 #include "lispFunctions/Multiply.h"
+#include "lispFunctions/Print.h"
 #include "lispFunctions/Sum.h"
 #include "SubVectorService.h"
 
@@ -102,6 +103,11 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aDivide);
 		return aDivide;
 	}
+	if (string == LISP_PRINT){
+		Print* aPrint = new Print();
+		expressionPointers.push_back(aPrint);
+		return aPrint;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")
@@ -118,8 +124,6 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am an if";
 //	if (string == "defun")
 //		return "I am a defun";
-//	if (string == "print")
-//		return "I am a print";
 //	if (string == "setq")
 //		return "I am a setq";
 //	if (string == "list")

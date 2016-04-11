@@ -22,12 +22,13 @@ int main(int argc, char *argv[]){
 //	std::string testing  = "(+ 5 5 (- 2 (+ 0 1)))"; // 11	// Is ok
 //	std::string testing = "(- 25 (* 5 4))"; // 5 // Is ok
 //	std::string testing = "(+ 5 5 5)";	// 15// Is ok
+//	std::string testing = "(+ (* 2 2) (/ 50 (+ 2 (+ 2 1))))"; // 14 // Is ok
+	std::string testing = "(print 1 2 3 4 5)"; // Print seems to work fine
 	if (argc > 1){
 		argv++; // Using argv just to satisfy compiler
 		std::cerr << "ERROR: argumentos" << std::endl;
 		return INPUT_ARGUMENTS_ERROR;
 	}
-	std::string testing = "(+ (* 2 2) (/ 50 (+ 2 (+ 2 1))))"; // 14 // Is ok
 	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser;
 	std::string parsedLine(aLispParser.prepareLineForParsing(&testing));
