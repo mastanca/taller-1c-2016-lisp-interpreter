@@ -25,6 +25,7 @@
 #define LISP_IF "if"
 #define LISP_SETQ "setq"
 #define LISP_SYNC "sync"
+#define LISP_FALSE ""
 
 
 #endif /* SRC_LISPFUNCTIONCONSTANTS_H_ */

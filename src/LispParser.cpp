@@ -19,6 +19,7 @@
 #include "lispFunctions/Car.h"
 #include "lispFunctions/Cdr.h"
 #include "lispFunctions/Divide.h"
+#include "lispFunctions/If.h"
 #include "lispFunctions/List.h"
 #include "lispFunctions/Minus.h"
 #include "lispFunctions/Multiply.h"
@@ -133,6 +134,12 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(anAppend);
 		return anAppend;
 	}
+	if (string == LISP_IF){
+		If* anIf = new If();
+		expressionPointers.push_back(anIf);
+		return anIf;
+
+	}
 
 //	if (string == "=")
 //		return "I am an equals";
@@ -140,8 +147,6 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am a bigger than";
 //	if (string == "<")
 //		return "I am a less than";
-//	if (string == "if")
-//		return "I am an if";
 //	if (string == "defun")
 //		return "I am a defun";
 //	if (string == "setq")
