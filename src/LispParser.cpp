@@ -56,7 +56,8 @@ LispParser::~LispParser() {
 	}
 	for (std::map<std::string, Expression*>::iterator it = globalVariables.begin(); it != globalVariables.end(); ++it){
 	  Expression* anExpression = it->second;
-	  delete anExpression;
+	  if (anExpression != NULL)
+		  delete anExpression;
 	}
 }
 
@@ -142,7 +143,6 @@ Function* LispParser::getFunction(std::string &string) {
 		If* anIf = new If();
 		expressionPointers.push_back(anIf);
 		return anIf;
-
 	}
 
 //	if (string == "=")
@@ -153,8 +153,6 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am a less than";
 //	if (string == "defun")
 //		return "I am a defun";
-//	if (string == "setq")
-//		return "I am a setq";
 //	if (string == "sync")
 //		return "I am a sync";
 	return NULL;

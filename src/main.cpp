@@ -31,12 +31,12 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(cdr (list 5 4 3 2 1))"; // Returns 4 3 2 1, seems fine
 //	std::string testing = "(cdr (list))"; // Returns "", seems fine
 //	std::string testing = "(append (list 1 2) (list 3))";
-//	std::string testing = "(print (cdr (car (list (list 1 2 3)))))"; // Should return (2 3)
+	std::string testing = "(print (cdr (car (list (list 1 2 3)))))"; // Should return (2 3)
 //	std::string testing = "(if 1 2 3)"; // should return 2, its ok
 //	std::string testing = "(if (list) 2 3)"; // should return 3, its ok
 //	std::string testing = "(if 1 (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns 1
 //	std::string testing = "(if (list) (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns (2 3)
-	std::string testing = "(setq variable 1234)";
+//	std::string testing = "(setq variable 1234)";
 
 
 	if (argc > 1){
