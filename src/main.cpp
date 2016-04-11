@@ -27,7 +27,9 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(list 1 2 3 4)"; // Seems ok
 //	std::string testing = "(list)"; // Returns "", seems fine
 //	std::string testing = "(car (list 500 2 3))"; // Returns 500, seems fine
-	std::string testing = "(car)"; // Returns "", seems fine
+//	std::string testing = "(car)"; // Returns "", seems fine
+//	std::string testing = "(cdr (list 5 4 3 2 1))"; // Returns 4 3 2 1, seems fine
+	std::string testing = "(cdr (list))"; // Returns "", seems fine
 
 	if (argc > 1){
 		argv++; // Using argv just to satisfy compiler

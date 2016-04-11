@@ -16,6 +16,7 @@
 #include "Constant.h"
 #include "lispFunctionConstants.h"
 #include "lispFunctions/Car.h"
+#include "lispFunctions/Cdr.h"
 #include "lispFunctions/Divide.h"
 #include "lispFunctions/List.h"
 #include "lispFunctions/Minus.h"
@@ -121,14 +122,17 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aCar);
 		return aCar;
 	}
+	if (string == LISP_CDR){
+		Cdr* aCdr = new Cdr();
+		expressionPointers.push_back(aCdr);
+		return aCdr;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")
 //		return "I am a bigger than";
 //	if (string == "<")
 //		return "I am a less than";
-//	if (string == "cdr")
-//		return "I am a cdr";
 //	if (string == "append")
 //		return "I am an append";
 //	if (string == "if")
@@ -137,7 +141,6 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am a defun";
 //	if (string == "setq")
 //		return "I am a setq";
-
 //	if (string == "sync")
 //		return "I am a sync";
 	return NULL;
