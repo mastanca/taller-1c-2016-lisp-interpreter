@@ -192,7 +192,8 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 			Expression* tempExpression = getExpression(&anotherVec);
 			function->appendArgument(tempExpression);
 			it += anotherVec.size();
-			*position += anotherVec.size();
+			// We add size + 1 to maintain the offset
+			*position += anotherVec.size() + 1;
 		} else {
 			// We need a vector argument so...
 			std::vector<std::string> tempVec;
