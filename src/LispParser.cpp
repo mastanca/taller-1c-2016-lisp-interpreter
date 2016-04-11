@@ -16,6 +16,7 @@
 #include "Constant.h"
 #include "lispFunctionConstants.h"
 #include "lispFunctions/Divide.h"
+#include "lispFunctions/List.h"
 #include "lispFunctions/Minus.h"
 #include "lispFunctions/Multiply.h"
 #include "lispFunctions/Print.h"
@@ -44,6 +45,7 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 }
 
 LispParser::~LispParser() {
+	// Delete all my allocated childs
 	for (std::vector<Expression*>::iterator it = expressionPointers.begin() ; it != expressionPointers.end(); ++it){
 		if (*it != NULL)
 			delete *it;
@@ -108,6 +110,11 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aPrint);
 		return aPrint;
 	}
+	if (string == LISP_LIST){
+		List* aList = new List();
+		expressionPointers.push_back(aList);
+		return aList;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")
@@ -126,8 +133,7 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am a defun";
 //	if (string == "setq")
 //		return "I am a setq";
-//	if (string == "list")
-//		return "I am a list";
+
 //	if (string == "sync")
 //		return "I am a sync";
 	return NULL;
