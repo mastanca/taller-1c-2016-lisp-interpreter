@@ -35,7 +35,8 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(if 1 2 3)"; // should return 2, its ok
 //	std::string testing = "(if (list) 2 3)"; // should return 3, its ok
 //	std::string testing = "(if 1 (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns 1
-	std::string testing = "(if (list) (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns (2 3)
+//	std::string testing = "(if (list) (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns (2 3)
+	std::string testing = "(setq variable 1234)";
 
 
 	if (argc > 1){

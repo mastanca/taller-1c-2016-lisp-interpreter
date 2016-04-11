@@ -9,6 +9,7 @@
 #define SRC_LISPPARSER_H_
 
 #include <vector>
+#include <map>
 
 class Function;
 
@@ -22,6 +23,8 @@ class LispParser {
 private:
 	// Structure to save pointers to allocated objects
 	std::vector<Expression*> expressionPointers;
+	// Structure to save the global variables
+	std::map<std::string, Expression*> globalVariables;
 	// Returns expression inside parenthesis
 	Expression* getExpression(std::vector<std::string>* lispLine);
 	// Compares symbols and returns the corresponding function or NULL if the symbol was )

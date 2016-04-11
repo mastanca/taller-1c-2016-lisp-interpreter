@@ -54,6 +54,10 @@ LispParser::~LispParser() {
 		if (*it != NULL)
 			delete *it;
 	}
+	for (std::map<std::string, Expression*>::iterator it = globalVariables.begin(); it != globalVariables.end(); ++it){
+	  Expression* anExpression = it->second;
+	  delete anExpression;
+	}
 }
 
 Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
