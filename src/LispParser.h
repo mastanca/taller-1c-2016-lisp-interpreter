@@ -20,14 +20,21 @@ class Function;
 
 class LispParser {
 private:
+	// Structure to save pointers to allocated objects
 	std::vector<Expression*> expressionPointers;
+	// Returns expression inside parenthesis
 	Expression* getExpression(std::vector<std::string>* lispLine);
+	// Compares symbols and returns the corresponding function or NULL if the symbol was )
 	Function* getFunction(std::string &string);
+	// Returns a constant with its value
 	Expression* getConstant(std::string &string);
-	bool isNumeric(std::string pszInput, int nNumberBase );
-	std::vector<std::string> getSubVector(std::vector<std::string>* vector, unsigned int offset);
+	// Check whether the input is a number or not
+	bool isNumeric(std::string input, int numberBase );
+	// Pareses the function, goes recursive if it has to
 	Expression* parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element);
+	// Current position in the original lisp line
 	unsigned int currentPos;
+	// Size of the lisp line
 	unsigned int lastPos;
 public:
 	// Constructor
