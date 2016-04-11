@@ -15,6 +15,7 @@
 
 #include "Constant.h"
 #include "lispFunctionConstants.h"
+#include "lispFunctions/Car.h"
 #include "lispFunctions/Divide.h"
 #include "lispFunctions/List.h"
 #include "lispFunctions/Minus.h"
@@ -115,14 +116,17 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aList);
 		return aList;
 	}
+	if (string == LISP_CAR){
+		Car* aCar = new Car();
+		expressionPointers.push_back(aCar);
+		return aCar;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")
 //		return "I am a bigger than";
 //	if (string == "<")
 //		return "I am a less than";
-//	if (string == "car")
-//		return "I am a car";
 //	if (string == "cdr")
 //		return "I am a cdr";
 //	if (string == "append")

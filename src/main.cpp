@@ -25,7 +25,10 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(+ (* 2 2) (/ 50 (+ 2 (+ 2 1))))"; // 14 // Is ok
 //	std::string testing = "(print 1 2 3 4 5)"; // Print seems to work fine
 //	std::string testing = "(list 1 2 3 4)"; // Seems ok
-	std::string testing = "(list)"; // Returns "", seems fine
+//	std::string testing = "(list)"; // Returns "", seems fine
+//	std::string testing = "(car (list 500 2 3))"; // Returns 500, seems fine
+	std::string testing = "(car)"; // Returns "", seems fine
+
 	if (argc > 1){
 		argv++; // Using argv just to satisfy compiler
 		std::cerr << "ERROR: argumentos" << std::endl;

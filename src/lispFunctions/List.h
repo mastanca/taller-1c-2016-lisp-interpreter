@@ -16,7 +16,6 @@ public:
 	virtual ~List();
 	std::string getResult();
 	void evaluate();
-
 };
 
 #endif /* SRC_LISPFUNCTIONS_LIST_H_ */
