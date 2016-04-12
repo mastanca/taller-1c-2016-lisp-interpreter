@@ -162,6 +162,7 @@ Function* LispParser::getFunction(std::string &string) {
 	}
 	if (string == LISP_SETQ) {
 		Setq* aSetq = new Setq();
+		expressionPointers.push_back(aSetq);
 		// Will add to the heap control structure later
 		return aSetq;
 	}
