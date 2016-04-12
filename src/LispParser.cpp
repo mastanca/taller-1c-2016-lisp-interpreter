@@ -61,12 +61,12 @@ LispParser::~LispParser() {
 		if (*it != NULL)
 			delete *it;
 	}
-	for (std::map<std::string, Expression*>::iterator it =
-			globalVariables.begin(); it != globalVariables.end(); ++it) {
-		Expression* anExpression = it->second;
-		if (anExpression != NULL)
-			delete anExpression;
-	}
+	// TODO: WATCH HERE
+//	for (std::map<std::string, Expression*>::iterator it =
+//			globalVariables.begin(); it != globalVariables.end(); ++it) {
+//		if (it->second != NULL)
+//			delete it->second;
+//	}
 }
 
 Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
@@ -97,6 +97,12 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 					i + 1);
 			expressionToReturn = getExpression(&subvec);
 			i += subvec.size() - 1;
+		} else {
+			std::map<std::string,Expression*>::iterator it;
+			it = globalVariables.find(element);
+			if (it != globalVariables.end())
+				expressionToReturn = it->second;
+			i += element.size();
 		}
 		++i;
 	}
@@ -234,6 +240,10 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 }
 
 void LispParser::addGlobalVariable(std::string tag, Expression* expression) {
-	globalVariables.insert(
-			std::pair<std::string, Expression*>(tag, expression));
+	globalVariables[tag] = expression;
+}
+
+void LispParser::clean() {
+	currentPos = lastPos = 0;
+	lispLine->clear();
 }

@@ -12,6 +12,7 @@
 #include "LispLineValidator.h"
 #include "LispParser.h"
 #include "Tokenizer.h"
+#include <stdlib.h>
 
 #define INPUT_ARGUMENTS_ERROR 1
 #define INVALID_LISP_LINE_ERROR 2
@@ -38,7 +39,7 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(if (list) (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns (2 3)
 //	std::string testing = "(print (append (list) (list)))";
 //	std::string testing = "(print (list 1 2 3) 4 5)";
-	std::string testing = "(setq b (list 1 2 3))";
+//	std::string testing = "(setq b (list 1 2 3))";
 
 
 	if (argc > 1){
@@ -46,21 +47,25 @@ int main(int argc, char *argv[]){
 		std::cerr << "ERROR: argumentos" << std::endl;
 		return INPUT_ARGUMENTS_ERROR;
 	}
-	std::cout << "Original string: " << testing << std::endl;
+//	std::cout << "Original string: " << testing << std::endl;
 	LispParser aLispParser;
-	std::string parsedLine(aLispParser.prepareLineForParsing(&testing));
-	std::vector<std::string>* tokensVector;
+	std::string aLispLine;
 	Tokenizer tokenizer;
-	tokensVector = tokenizer.tokenize(parsedLine);
-	LispLineValidator validator = LispLineValidator(tokensVector);
-	if (validator.isValidLine() == false){
-		std::cerr << "ERROR: <linea invalida>" << std::endl;
-		return INVALID_LISP_LINE_ERROR;
-	} else {
-		aLispParser.setLispLine(tokensVector);
-		aLispParser.parseLispLine();
+	while (std::getline(std::cin, aLispLine)) {
+		std::string parsedLine(aLispParser.prepareLineForParsing(&aLispLine));
+		std::vector<std::string>* tokensVector;
+		tokensVector = tokenizer.tokenize(parsedLine);
+		LispLineValidator validator = LispLineValidator(tokensVector);
+		if (validator.isValidLine() == false){
+			std::cerr << "ERROR: <linea invalida>" << std::endl;
+			return INVALID_LISP_LINE_ERROR;
+		} else {
+			aLispParser.setLispLine(tokensVector);
+			aLispParser.parseLispLine();
+			aLispParser.clean();
+		}
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 

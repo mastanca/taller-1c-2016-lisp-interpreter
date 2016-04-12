@@ -57,6 +57,8 @@ public:
 	Expression* getExpression(std::vector<std::string>* lispLine);
 	// Add a global varable to my control structure
 	void addGlobalVariable(std::string tag, Expression* expression);
+	// Clean instance variables for next run
+	void clean();
 
 };
 
