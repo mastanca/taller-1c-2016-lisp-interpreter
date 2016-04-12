@@ -36,8 +36,9 @@ int main(int argc, char *argv[]){
 //	std::string testing = "(if (list) 2 3)"; // should return 3, its ok
 //	std::string testing = "(if 1 (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns 1
 //	std::string testing = "(if (list) (car (list 1 2 3)) (cdr (list 1 2 3)))"; // returns (2 3)
-	std::string testing = "(print (append (list) (list)))";
-//	std::string testing = "(setq variable 1234)";
+//	std::string testing = "(print (append (list) (list)))";
+//	std::string testing = "(print (list 1 2 3) 4 5)";
+	std::string testing = "(setq b (list 1 2 3))";
 
 
 	if (argc > 1){
@@ -56,7 +57,8 @@ int main(int argc, char *argv[]){
 		std::cerr << "ERROR: <linea invalida>" << std::endl;
 		return INVALID_LISP_LINE_ERROR;
 	} else {
-		aLispParser.parseLispLine(tokensVector);
+		aLispParser.setLispLine(tokensVector);
+		aLispParser.parseLispLine();
 	}
 	return 0;
 }

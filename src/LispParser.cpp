@@ -24,10 +24,11 @@
 #include "lispFunctions/Minus.h"
 #include "lispFunctions/Multiply.h"
 #include "lispFunctions/Print.h"
+#include "lispFunctions/Setq.h"
 #include "lispFunctions/Sum.h"
 #include "SubVectorService.h"
 
-int LispParser::parseLispLine(std::vector<std::string>* lispLine) {
+int LispParser::parseLispLine() {
 	getExpression(lispLine);
 	return EXIT_SUCCESS;
 }
@@ -46,6 +47,10 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 		}
 	}
 	return newString.str();
+}
+
+void LispParser::setLispLine(std::vector<std::string>* lispLine) {
+	this->lispLine = lispLine;
 }
 
 LispParser::~LispParser() {
@@ -144,6 +149,11 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(anIf);
 		return anIf;
 	}
+	if (string == LISP_SETQ){
+		Setq* aSetq = new Setq();
+		// Will add to the heap control structure later
+		return aSetq;
+	}
 
 //	if (string == "=")
 //		return "I am an equals";
@@ -164,11 +174,11 @@ Expression* LispParser::getConstant(std::string &string) {
 	return aConstant;
 }
 
-bool LispParser::isNumeric(std::string pszInput, int nNumberBase) {
+bool LispParser::isNumeric(std::string input, int numberBase) {
 	std::string base = "0123456789ABCDEF";
-	std::string input = pszInput;
+	std::string output = input;
 
-	return (input.find_first_not_of(base.substr(0, nNumberBase))
+	return (output.find_first_not_of(base.substr(0, numberBase))
 			== std::string::npos);
 }
 
@@ -178,27 +188,33 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 	returningExpression << function->getIdentifier();
 	std::cout << returningExpression.str() << std::endl;
 	std::vector<std::string> subvec = SubVectorService().run(lispLine, *position + 1);
-	for (std::vector<std::string>::iterator it = subvec.begin() ; it != subvec.end(); ++it){
-		std::cout << *it << std::endl;
-		if (*it == "("){
-			std::vector<std::string> anotherVec = SubVectorService().run(&subvec, *position + 1);
-			Expression* tempExpression = getExpression(&anotherVec);
-			function->appendArgument(tempExpression);
-			it += anotherVec.size();
-			// We add size + 1 to maintain the offset
-			*position += anotherVec.size() + 1;
-		} else {
-			// We need a vector argument so...
-			std::vector<std::string> tempVec;
-			tempVec.push_back(*it);
-			Expression* tempExpression = getExpression(&tempVec);
-			if (tempExpression != NULL)
-				// Its NULL if it was a ")"
+	if (function->getIdentifier() == LISP_SETQ){
+		// Runtime variables are clever and know how to parse themselves
+		// (if you send them a parser)
+		((Setq*)function)->parseBody(&subvec, this);
+	} else {
+		for (std::vector<std::string>::iterator it = subvec.begin() ; it != subvec.end(); ++it){
+			std::cout << *it << std::endl;
+			if (*it == "("){
+				std::vector<std::string> anotherVec = SubVectorService().run(&subvec, *position + 1);
+				Expression* tempExpression = getExpression(&anotherVec);
 				function->appendArgument(tempExpression);
-			// Keep moving original lisp line cursor
-			++*position;
-		}
+				it += anotherVec.size();
+				// We add size + 1 to maintain the offset
+				*position += anotherVec.size() + 1;
+			} else {
+				// We need a vector argument so...
+				std::vector<std::string> tempVec;
+				tempVec.push_back(*it);
+				Expression* tempExpression = getExpression(&tempVec);
+				if (tempExpression != NULL)
+					// Its NULL if it was a ")"
+					function->appendArgument(tempExpression);
+				// Keep moving original lisp line cursor
+				++*position;
+			}
 
+		}
 	}
 	std::cout << "I am " << function->getIdentifier() << " , and have " <<
 			function->getArguments().size() << " arguments" <<

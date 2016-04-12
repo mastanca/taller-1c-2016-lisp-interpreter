@@ -19,7 +19,6 @@ public:
 	virtual ~Function();
 	virtual void evaluate() = 0;
 	void appendArgument(Expression* argument);
-	void parseBody(std::vector<std::string> subLine);
 	std::vector<Expression*>& getArguments();
 };
 

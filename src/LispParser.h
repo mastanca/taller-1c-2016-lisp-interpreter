@@ -21,12 +21,12 @@ class Function;
 
 class LispParser {
 private:
+	// Original line to parse
+	std::vector<std::string>* lispLine;
 	// Structure to save pointers to allocated objects
 	std::vector<Expression*> expressionPointers;
 	// Structure to save the global variables
 	std::map<std::string, Expression*> globalVariables;
-	// Returns expression inside parenthesis
-	Expression* getExpression(std::vector<std::string>* lispLine);
 	// Compares symbols and returns the corresponding function or NULL if the symbol was )
 	Function* getFunction(std::string &string);
 	// Returns a constant with its value
@@ -41,13 +41,16 @@ private:
 	unsigned int lastPos;
 public:
 	// Constructor
-	LispParser() : currentPos(0), lastPos(0) {}
+	LispParser() : lispLine(NULL), currentPos(0), lastPos(0) {}
 	// Prepares line for parsing by adding whitespace between characters
 	std::string prepareLineForParsing(std::string* lispLine);
 	// Parse lisp line, determining expressions inside it
-	int parseLispLine(std::vector<std::string>* lispLine);
+	int parseLispLine();
 	// Destroyer
 	virtual ~LispParser();
+	void setLispLine(std::vector<std::string>* lispLine);
+	// Returns expression inside parenthesis
+	Expression* getExpression(std::vector<std::string>* lispLine);
 };
 
 #endif /* SRC_LISPPARSER_H_ */
