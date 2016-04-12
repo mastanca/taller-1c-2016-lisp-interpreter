@@ -210,6 +210,7 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 		// Runtime variables are clever and know how to parse themselves
 		// (if you send them a parser)
 		((Setq*) function)->parseBody(&subvec, this);
+		*position += subvec.size();
 	} else {
 		for (std::vector<std::string>::iterator it = subvec.begin();
 				it != subvec.end(); ++it) {

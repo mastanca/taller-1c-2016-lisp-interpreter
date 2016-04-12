@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 	// returns (2 3)
 //	std::string testing = "(print (append (list) (list)))";
 //	std::string testing = "(print (list 1 2 3) 4 5)";
-//	std::string testing = "(setq b (list 1 2 3))";
+//	std::string testing = "(setq c (car (list 1 2 3 4)))";
 
 
 	if (argc > 1){
