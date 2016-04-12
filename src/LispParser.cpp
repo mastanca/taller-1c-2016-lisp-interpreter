@@ -38,7 +38,8 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 	std::stringstream newString;
 	for (uint i = 0; i < lispLine->size(); ++i) {
 		tempChar = lispLine->at(i);
-		if (tempChar == OPENING_PARENTHESIS || tempChar == CLOSING_PARENTHESIS) {
+		if (tempChar == OPENING_PARENTHESIS ||
+				tempChar == CLOSING_PARENTHESIS) {
 			std::string withSpaces = (" " + std::string(sizeof(char), tempChar)
 					+ " ");
 			newString << withSpaces;
@@ -55,14 +56,16 @@ void LispParser::setLispLine(std::vector<std::string>* lispLine) {
 
 LispParser::~LispParser() {
 	// Delete all my allocated childs
-	for (std::vector<Expression*>::iterator it = expressionPointers.begin() ; it != expressionPointers.end(); ++it){
+	for (std::vector<Expression*>::iterator it = expressionPointers.begin();
+			it != expressionPointers.end(); ++it) {
 		if (*it != NULL)
 			delete *it;
 	}
-	for (std::map<std::string, Expression*>::iterator it = globalVariables.begin(); it != globalVariables.end(); ++it){
-	  Expression* anExpression = it->second;
-	  if (anExpression != NULL)
-		  delete anExpression;
+	for (std::map<std::string, Expression*>::iterator it =
+			globalVariables.begin(); it != globalVariables.end(); ++it) {
+		Expression* anExpression = it->second;
+		if (anExpression != NULL)
+			delete anExpression;
 	}
 }
 
@@ -72,7 +75,7 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 		lastPos = lispLine->size();
 	std::stringstream returningExpression;
 	int i = 0;
-	while (currentPos < lastPos && i < (int)lispLine->size()) {
+	while (currentPos < lastPos && i < (int) lispLine->size()) {
 		++currentPos;
 		std::string element = lispLine->at(i);
 
@@ -84,14 +87,16 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 			expressionToReturn = getConstant(element);
 			expressionToReturn->evaluate();
 		} else if (getFunction(element) != NULL) {
-			// If it's a function then append symbol and get expression of following element
+			// If it's a function then append symbol and get expression of
+			// following element
 			expressionToReturn = parseFunction(lispLine, &i, &element);
 		} else if (element == "(") {
 			// if it's an opening one get recursive
 			std::cout << "Opening expression" << std::endl;
-			std::vector<std::string> subvec = SubVectorService().run(lispLine, i + 1);
+			std::vector<std::string> subvec = SubVectorService().run(lispLine,
+					i + 1);
 			expressionToReturn = getExpression(&subvec);
-			i += subvec.size() -1;
+			i += subvec.size() - 1;
 		}
 		++i;
 	}
@@ -99,57 +104,57 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 }
 
 Function* LispParser::getFunction(std::string &string) {
-	if (string == LISP_SUM){
+	if (string == LISP_SUM) {
 		Sum* aSum = new Sum();
 		expressionPointers.push_back(aSum);
 		return aSum;
 	}
-	if (string == LISP_MINUS){
+	if (string == LISP_MINUS) {
 		Minus* aMinus = new Minus();
 		expressionPointers.push_back(aMinus);
 		return aMinus;
 	}
-	if (string == LISP_MULTIPLY){
+	if (string == LISP_MULTIPLY) {
 		Multiply* aMultiply = new Multiply();
 		expressionPointers.push_back(aMultiply);
 		return aMultiply;
 	}
-	if (string == LISP_DIVIDE){
+	if (string == LISP_DIVIDE) {
 		Divide* aDivide = new Divide();
 		expressionPointers.push_back(aDivide);
 		return aDivide;
 	}
-	if (string == LISP_PRINT){
+	if (string == LISP_PRINT) {
 		Print* aPrint = new Print();
 		expressionPointers.push_back(aPrint);
 		return aPrint;
 	}
-	if (string == LISP_LIST){
+	if (string == LISP_LIST) {
 		List* aList = new List();
 		expressionPointers.push_back(aList);
 		return aList;
 	}
-	if (string == LISP_CAR){
+	if (string == LISP_CAR) {
 		Car* aCar = new Car();
 		expressionPointers.push_back(aCar);
 		return aCar;
 	}
-	if (string == LISP_CDR){
+	if (string == LISP_CDR) {
 		Cdr* aCdr = new Cdr();
 		expressionPointers.push_back(aCdr);
 		return aCdr;
 	}
-	if (string == LISP_APPEND){
+	if (string == LISP_APPEND) {
 		Append* anAppend = new Append();
 		expressionPointers.push_back(anAppend);
 		return anAppend;
 	}
-	if (string == LISP_IF){
+	if (string == LISP_IF) {
 		If* anIf = new If();
 		expressionPointers.push_back(anIf);
 		return anIf;
 	}
-	if (string == LISP_SETQ){
+	if (string == LISP_SETQ) {
 		Setq* aSetq = new Setq();
 		// Will add to the heap control structure later
 		return aSetq;
@@ -182,21 +187,25 @@ bool LispParser::isNumeric(std::string input, int numberBase) {
 			== std::string::npos);
 }
 
-Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* position, std::string* element){
+Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
+		int* position, std::string* element) {
 	Function* function = getFunction(*element);
 	std::stringstream returningExpression;
 	returningExpression << function->getIdentifier();
 	std::cout << returningExpression.str() << std::endl;
-	std::vector<std::string> subvec = SubVectorService().run(lispLine, *position + 1);
-	if (function->getIdentifier() == LISP_SETQ){
+	std::vector<std::string> subvec = SubVectorService().run(lispLine,
+			*position + 1);
+	if (function->getIdentifier() == LISP_SETQ) {
 		// Runtime variables are clever and know how to parse themselves
 		// (if you send them a parser)
-		((Setq*)function)->parseBody(&subvec, this);
+		((Setq*) function)->parseBody(&subvec, this);
 	} else {
-		for (std::vector<std::string>::iterator it = subvec.begin() ; it != subvec.end(); ++it){
+		for (std::vector<std::string>::iterator it = subvec.begin();
+				it != subvec.end(); ++it) {
 			std::cout << *it << std::endl;
-			if (*it == "("){
-				std::vector<std::string> anotherVec = SubVectorService().run(&subvec, *position + 1);
+			if (*it == "(") {
+				std::vector<std::string> anotherVec = SubVectorService().run(
+						&subvec, *position + 1);
 				Expression* tempExpression = getExpression(&anotherVec);
 				function->appendArgument(tempExpression);
 				it += anotherVec.size();
@@ -216,10 +225,15 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine, int* p
 
 		}
 	}
-	std::cout << "I am " << function->getIdentifier() << " , and have " <<
-			function->getArguments().size() << " arguments" <<
-			". My result is ";
+	std::cout << "I am " << function->getIdentifier() << " , and have "
+			<< function->getArguments().size() << " arguments"
+			<< ". My result is ";
 	function->evaluate();
 	std::cout << function->getResult() << std::endl;
 	return function;
+}
+
+void LispParser::addGlobalVariable(std::string tag, Expression* expression) {
+	globalVariables.insert(
+			std::pair<std::string, Expression*>(tag, expression));
 }

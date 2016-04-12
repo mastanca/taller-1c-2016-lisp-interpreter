@@ -19,7 +19,9 @@ private:
 	uint closingOnePosition;
 	uint closingParenthesisCount;
 public:
-	SubVectorService() : counter(0), openingParenthesisCount(0), closingOnePosition(0), closingParenthesisCount(0) {}
+	SubVectorService() :
+			counter(0), openingParenthesisCount(0), closingOnePosition(0),
+			closingParenthesisCount(0) {}
 	std::vector<std::string> run(std::vector<std::string>* vector, uint offset);
 	virtual ~SubVectorService();
 };

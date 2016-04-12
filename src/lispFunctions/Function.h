@@ -10,12 +10,13 @@
 
 #include "../Expression.h"
 
-class Function : public Expression {
+class Function: public Expression {
 protected:
 	std::vector<Expression*> arguments;
 	std::string result;
 public:
-	Function(std::string identifier, std::string result) : Expression(identifier), result(result) {}
+	Function(std::string identifier, std::string result) :
+			Expression(identifier), result(result) {}
 	virtual ~Function();
 	virtual void evaluate() = 0;
 	void appendArgument(Expression* argument);
