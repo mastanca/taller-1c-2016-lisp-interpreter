@@ -20,7 +20,7 @@ public:
 	virtual void evaluate() = 0;
 	void appendArgument(Expression* argument);
 	void parseBody(std::vector<std::string> subLine);
-	const std::vector<Expression*>& getArguments() const;
+	std::vector<Expression*>& getArguments();
 };
 
 #endif /* SRC_LISPFUNCTIONS_FUNCTION_H_ */

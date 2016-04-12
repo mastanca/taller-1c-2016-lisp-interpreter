@@ -11,7 +11,7 @@
 Function::~Function() {
 }
 
-const std::vector<Expression*>& Function::getArguments() const {
+std::vector<Expression*>& Function::getArguments() {
 	return arguments;
 }
 

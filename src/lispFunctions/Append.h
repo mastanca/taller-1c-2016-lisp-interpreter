@@ -11,8 +11,11 @@
 #include "Function.h"
 
 class Append: public Function {
+private:
+	// Flattens the result
+	void flatten();
 public:
-	Append() : Function(LISP_APPEND, "") {}
+	Append() : Function(LISP_APPEND, "()") {}
 	virtual ~Append();
 	std::string getResult();
 	void evaluate();
