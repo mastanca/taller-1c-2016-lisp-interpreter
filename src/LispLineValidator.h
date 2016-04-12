@@ -15,7 +15,7 @@ class LispLineValidator {
 private:
 	std::vector<std::string>* lispLine;
 public:
-	LispLineValidator(std::vector<std::string>* lispLine) :
+	explicit LispLineValidator(std::vector<std::string>* lispLine) :
 			lispLine(lispLine) {
 	}
 	virtual ~LispLineValidator();

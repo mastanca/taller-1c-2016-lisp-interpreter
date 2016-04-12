@@ -11,8 +11,8 @@
 #include <string>
 #include <vector>
 
-#include "../lispFunctionConstants.h"
 #include "Function.h"
+#include "lispFunctionConstants.h"
 
 class LispParser;
 

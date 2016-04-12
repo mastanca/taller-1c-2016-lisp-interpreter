@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_CDR_H_
 
 #include "Function.h"
+#include <string>
+
 
 class Cdr: public Function {
 public:

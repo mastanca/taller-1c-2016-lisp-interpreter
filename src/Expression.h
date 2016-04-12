@@ -18,7 +18,7 @@ protected:
 	std::vector<Expression*> environment;
 	std::string identifier;
 public:
-	Expression(std::string identifier) : identifier(identifier) {}
+	explicit Expression(std::string identifier) : identifier(identifier) {}
 	virtual ~Expression();
 	virtual void evaluate() = 0;
 	const std::string& getIdentifier() const;

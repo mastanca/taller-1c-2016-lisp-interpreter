@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_CAR_H_
 
 #include "Function.h"
+#include <string>
+
 
 class Car: public Function {
 public:

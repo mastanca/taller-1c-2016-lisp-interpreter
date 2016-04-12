@@ -6,6 +6,7 @@
  */
 
 #include "Function.h"
+#include <vector>
 
 
 Function::~Function() {

@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "../lispFunctionConstants.h"
+#include "lispFunctionConstants.h"
 
 #define SPACE " "
 

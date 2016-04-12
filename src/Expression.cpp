@@ -6,6 +6,7 @@
  */
 
 #include "Expression.h"
+#include <string>
 
 
 Expression::~Expression() {

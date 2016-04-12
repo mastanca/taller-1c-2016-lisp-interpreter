@@ -6,6 +6,9 @@
  */
 
 #include "If.h"
+#include <string>
+#include <vector>
+
 
 If::~If() {
 }

@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_MINUS_H_
 
 #include "Function.h"
+#include <string>
+
 
 class Minus : public Function {
 public:

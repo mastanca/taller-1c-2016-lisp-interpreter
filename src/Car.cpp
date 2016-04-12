@@ -6,6 +6,8 @@
  */
 
 #include "Car.h"
+#include <string>
+
 
 Car::~Car() {
 }

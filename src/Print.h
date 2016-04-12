@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_PRINT_H_
 
 #include "Function.h"
+#include <string>
+
 
 class Print: public Function {
 public:

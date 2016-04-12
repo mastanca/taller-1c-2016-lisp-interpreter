@@ -41,6 +41,7 @@ private:
 	unsigned int currentPos;
 	// Size of the lisp line
 	unsigned int lastPos;
+	
 public:
 	// Constructor
 	LispParser() :
@@ -59,7 +60,6 @@ public:
 	void addGlobalVariable(std::string tag, Expression* expression);
 	// Clean instance variables for next run
 	void clean();
-
 };
 
 #endif /* SRC_LISPPARSER_H_ */

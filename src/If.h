@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_IF_H_
 
 #include "Function.h"
+#include <string>
+
 
 class If: public Function {
 public:

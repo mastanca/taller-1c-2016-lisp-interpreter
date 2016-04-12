@@ -9,6 +9,8 @@
 #define SRC_LISPFUNCTIONS_LIST_H_
 
 #include "Function.h"
+#include <string>
+
 
 class List: public Function {
 public:

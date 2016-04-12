@@ -9,6 +9,7 @@
 #define SRC_LISPFUNCTIONS_DIVIDE_H_
 
 #include "Function.h"
+#include <string>
 
 class Divide : public Function {
 public:

@@ -10,8 +10,8 @@
 
 #include <string>
 
-#include "../lispFunctionConstants.h"
 #include "Function.h"
+#include "lispFunctionConstants.h"
 
 class Multiply : public Function {
 public:

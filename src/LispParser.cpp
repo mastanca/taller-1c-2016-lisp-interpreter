@@ -12,21 +12,25 @@
 #include <iostream>
 #include <iterator>
 #include <sstream>
+#include <string>
+#include <vector>
+#include <map>
 
+
+#include "Append.h"
+#include "Car.h"
+#include "Cdr.h"
 #include "Constant.h"
+#include "Divide.h"
+#include "If.h"
 #include "lispFunctionConstants.h"
-#include "lispFunctions/Append.h"
-#include "lispFunctions/Car.h"
-#include "lispFunctions/Cdr.h"
-#include "lispFunctions/Divide.h"
-#include "lispFunctions/If.h"
-#include "lispFunctions/List.h"
-#include "lispFunctions/Minus.h"
-#include "lispFunctions/Multiply.h"
-#include "lispFunctions/Print.h"
-#include "lispFunctions/Setq.h"
-#include "lispFunctions/Sum.h"
+#include "List.h"
+#include "Minus.h"
+#include "Multiply.h"
+#include "Print.h"
+#include "Setq.h"
 #include "SubVectorService.h"
+#include "Sum.h"
 
 int LispParser::parseLispLine() {
 	getExpression(lispLine);
@@ -229,7 +233,6 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 				// Keep moving original lisp line cursor
 				++*position;
 			}
-
 		}
 	}
 	std::cout << "I am " << function->getIdentifier() << " , and have "

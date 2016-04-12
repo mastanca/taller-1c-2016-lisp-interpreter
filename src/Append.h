@@ -9,6 +9,7 @@
 #define SRC_LISPFUNCTIONS_APPEND_H_
 
 #include "Function.h"
+#include <string>
 
 class Append: public Function {
 private:

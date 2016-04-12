@@ -9,13 +9,16 @@
 #define SRC_CONSTANT_H_
 
 #include "Expression.h"
+#include <string>
+
 
 class Constant: public Expression {
 private:
 	int value;
-	std::string numberToString ( int number );
+	std::string numberToString(int number);
 public:
-	Constant(int value) : Expression(numberToString(value)), value(value){}
+	explicit Constant(int value) : Expression(numberToString(value)),
+	 		value(value){}
 	virtual ~Constant();
 	void evaluate();
 	std::string getResult();

@@ -9,6 +9,9 @@
 
 #include <sys/types.h>
 #include <iterator>
+#include <string>
+#include <vector>
+
 
 #define OPENING_PARENTHESIS "("
 #define CLOSING_PARENTHESIS ")"
@@ -30,5 +33,4 @@ bool LispLineValidator::isValidLine() {
 	if (openingParenthesisCount == closingParenthesisCount)
 		return true;
 	return false;
-
 }

@@ -9,9 +9,12 @@
 
 #include <iostream>
 #include <iterator>
+#include <string>
+#include <vector>
 
-#include "../LispParser.h"
-#include "../SubVectorService.h"
+
+#include "LispParser.h"
+#include "SubVectorService.h"
 
 Setq::~Setq() {
 }

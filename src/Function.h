@@ -8,7 +8,10 @@
 #ifndef SRC_LISPFUNCTIONS_FUNCTION_H_
 #define SRC_LISPFUNCTIONS_FUNCTION_H_
 
-#include "../Expression.h"
+#include <string>
+#include <vector>
+
+#include "Expression.h"
 
 class Function: public Expression {
 protected:
