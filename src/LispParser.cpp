@@ -31,9 +31,19 @@
 #include "Setq.h"
 #include "SubVectorService.h"
 #include "Sum.h"
+#include "ExpressionRunner.h"
 
 int LispParser::parseLispLine() {
-	getExpression(lispLine);
+	Expression * expression = getExpression(lispLine);
+	if (expression->getIdentifier() == LISP_SYNC){
+		// We found a sync, lets join the running threads before going on
+		joinThreads();
+	} else {
+		ExpressionRunner* aThread = new ExpressionRunner(expression);
+		runningThreads.push_back(aThread);
+		aThread->run();
+	}
+
 	return EXIT_SUCCESS;
 }
 
@@ -251,4 +261,19 @@ void LispParser::addGlobalVariable(std::string tag, Expression* expression) {
 void LispParser::clean() {
 	currentPos = lastPos = 0;
 	lispLine->clear();
+}
+
+void LispParser::joinThreads() {
+	for (std::vector<Thread*>::iterator it = runningThreads.begin();
+			it != runningThreads.end(); ++it) {
+		(*it)->join();
+
+		if (*it != NULL) {
+			delete *it;
+			*it = NULL;
+		} //While iterating clean the list
+	}
+
+	//Clear the corrupted nodes
+	runningThreads.clear();
 }

@@ -8,8 +8,11 @@
 #ifndef SRC_LISPPARSER_H_
 #define SRC_LISPPARSER_H_
 
-#include <vector>
 #include <map>
+#include <vector>
+
+#include "Mutex.h"
+#include "Thread.h"
 
 class Function;
 
@@ -23,6 +26,8 @@ class LispParser {
 private:
 	// Original line to parse
 	std::vector<std::string>* lispLine;
+	// Structure to save running threads
+	std::vector<Thread*> runningThreads;
 	// Structure to save pointers to allocated objects
 	std::vector<Expression*> expressionPointers;
 	// Structure to save the global variables
@@ -37,11 +42,14 @@ private:
 	// Pareses the function, goes recursive if it has to
 	Expression* parseFunction(std::vector<std::string>* lispLine, int* position,
 			std::string* element);
+	// Join my running threads
+	void joinThreads();
 	// Current position in the original lisp line
 	unsigned int currentPos;
 	// Size of the lisp line
 	unsigned int lastPos;
-	
+	// Mutex for threading
+	Mutex mutex;
 public:
 	// Constructor
 	LispParser() :
