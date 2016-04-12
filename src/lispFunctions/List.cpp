@@ -25,9 +25,10 @@ std::string List::getResult() {
 void List::evaluate() {
 	uint argc = arguments.size();
 	// Remember from constructor that lists are initialized with result "()"
-	if (argc > 0){
+	if (argc > 0) {
 		std::stringstream partialResult;
-		for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
+		for (std::vector<Expression*>::iterator it = arguments.begin();
+				it != arguments.end(); ++it) {
 			// Ok args, evaluate and give me your results
 			(*it)->evaluate();
 			partialResult << (*it)->getResult();

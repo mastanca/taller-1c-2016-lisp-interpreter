@@ -20,8 +20,10 @@ Print::~Print() {
 }
 
 void Print::evaluate() {
-	for (std::vector<Expression*>::iterator it = arguments.begin() ; it != arguments.end(); ++it){
-		// Let's assume expression are grown ups and know how to represent themselves
+	for (std::vector<Expression*>::iterator it = arguments.begin();
+			it != arguments.end(); ++it) {
+		// Let's assume expression are grown ups and know how to
+		// represent themselves
 		std::cout << (*it)->getResult();
 		// If the expression is not the last one then add a space after it
 		if (it != arguments.end())

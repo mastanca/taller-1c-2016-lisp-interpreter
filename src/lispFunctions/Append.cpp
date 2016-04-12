@@ -25,7 +25,8 @@ std::string Append::getResult() {
 void Append::evaluate() {
 	// My arguments are one or many lists
 	std::stringstream partialResult;
-	for (std::vector<Expression*>::iterator it = arguments.begin(); it != arguments.end(); ++it){
+	for (std::vector<Expression*>::iterator it = arguments.begin();
+			it != arguments.end(); ++it) {
 		unsigned int counter = 1;
 		(*it)->evaluate();
 		std::string test = (*it)->getResult();
@@ -41,8 +42,8 @@ void Append::evaluate() {
 void Append::flatten() {
 	std::stringstream partialResult;
 	partialResult << "(";
-	for (unsigned int i = 0; i < result.length(); ++i){
-		if (result.at(i) == '(' || result.at(i) == ')'){
+	for (unsigned int i = 0; i < result.length(); ++i) {
+		if (result.at(i) == '(' || result.at(i) == ')') {
 			result.erase(i, sizeof(char));
 			--i; // Re adapt size
 		}

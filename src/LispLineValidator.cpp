@@ -19,10 +19,11 @@ LispLineValidator::~LispLineValidator() {
 bool LispLineValidator::isValidLine() {
 	uint openingParenthesisCount = 0;
 	uint closingParenthesisCount = 0;
-	for (std::vector<std::string>::iterator it = lispLine->begin() ; it != lispLine->end(); ++it){
-		if (*it == OPENING_PARENTHESIS){
+	for (std::vector<std::string>::iterator it = lispLine->begin();
+			it != lispLine->end(); ++it) {
+		if (*it == OPENING_PARENTHESIS) {
 			++openingParenthesisCount;
-		} else if (*it == CLOSING_PARENTHESIS){
+		} else if (*it == CLOSING_PARENTHESIS) {
 			++closingParenthesisCount;
 		}
 	}

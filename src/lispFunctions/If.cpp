@@ -17,8 +17,10 @@ std::string If::getResult() {
 void If::evaluate() {
 	// empty list = false
 	// not empty list = true
-	// Im going to receive 3 arguments, if the first argument is true then evaluate and return the second one
-	// if the first argument is false (empty list) the evaluate and return the third one
+	// Im going to receive 3 arguments, if the first argument is
+	// true then evaluate and return the second one
+	// if the first argument is false (empty list) the evaluate and
+	// return the third one
 	std::vector<Expression*> myArguments = getArguments();
 	std::vector<Expression*>::iterator it = myArguments.begin();
 	Expression* condition = *it;
