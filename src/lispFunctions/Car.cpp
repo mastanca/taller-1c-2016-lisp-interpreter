@@ -16,13 +16,12 @@ std::string Car::getResult() {
 
 void Car::evaluate() {
 	// Car should only get a list as input so if arguments has more than one
-	// element something is wrong and we will return ""
+	// element something is wrong and we will return "()"
 	if (arguments.size() > 1 || arguments.size() == 0){
 		result = "";
 	} else {
 		// My arguments are only lists so we can treat them as functions to
 		// get their arguments
-//		Expression* firstArg = ((Function*)(getArguments().front()))->getArguments().front();
 		Expression* myArgumentArgument;
 		Function* firstArg = ((Function*)(getArguments().front()));
 		if (firstArg->getArguments().size() != 0){

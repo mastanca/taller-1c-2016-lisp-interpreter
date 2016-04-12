@@ -25,21 +25,15 @@ std::string Append::getResult() {
 void Append::evaluate() {
 	// My arguments are one or many lists
 	std::stringstream partialResult;
-//	partialResult << "(";
 	for (std::vector<Expression*>::iterator it = arguments.begin(); it != arguments.end(); ++it){
-		// Ill be getting my arguments arguments and appending their results
-//		std::vector<Expression*> myArguments = ((Function*)(*it))->getArguments();
 		unsigned int counter = 1;
-//		for (std::vector<Expression*>::iterator anotherit = myArgumentArguments.begin(); anotherit != myArgumentArguments.end(); ++anotherit){
-			(*it)->evaluate();
-			std::string test = (*it)->getResult();
-			partialResult << (*it)->getResult();
-			if (counter != arguments.size())
-				partialResult << SPACE;
-			++counter;
-//		}
+		(*it)->evaluate();
+		std::string test = (*it)->getResult();
+		partialResult << (*it)->getResult();
+		if (counter != arguments.size())
+			partialResult << SPACE;
+		++counter;
 	}
-//	partialResult << ")";
 	result = partialResult.str();
 	flatten();
 }
