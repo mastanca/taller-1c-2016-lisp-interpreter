@@ -102,7 +102,6 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 
 		if (element == ")") {
 			// If it's a closing one append and return
-			std::cout << "Closing expression" << std::endl;
 		} else if (isNumeric(element, 10)) {
 			// If it's a number then append and return
 			expressionToReturn = getConstant(element);
@@ -113,7 +112,6 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 			expressionToReturn = parseFunction(lispLine, &i, &element);
 		} else if (element == "(") {
 			// if it's an opening one get recursive
-			std::cout << "Opening expression" << std::endl;
 			std::vector<std::string> subvec = SubVectorService().run(lispLine,
 					i + 1);
 			expressionToReturn = getExpression(&subvec);
@@ -222,7 +220,6 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 	Function* function = getFunction(*element);
 	std::stringstream returningExpression;
 	returningExpression << function->getIdentifier();
-	std::cout << returningExpression.str() << std::endl;
 	std::vector<std::string> subvec = SubVectorService().run(lispLine,
 			*position + 1);
 	if (function->getIdentifier() == LISP_SETQ) {
@@ -233,7 +230,6 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 	} else {
 		for (std::vector<std::string>::iterator it = subvec.begin();
 				it != subvec.end(); ++it) {
-			std::cout << *it << std::endl;
 			if (*it == "(") {
 				std::vector<std::string> anotherVec = SubVectorService().run(
 						&subvec, *position + 1);
@@ -255,11 +251,7 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 			}
 		}
 	}
-	std::cout << "I am " << function->getIdentifier() << " , and have "
-			<< function->getArguments().size() << " arguments"
-			<< ". My result is ";
-	function->evaluate();
-	std::cout << function->getResult() << std::endl;
+//	function->evaluate();
 	return function;
 }
 

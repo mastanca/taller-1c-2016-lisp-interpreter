@@ -31,7 +31,6 @@ void Setq::parseBody(std::vector<std::string>* subLine, LispParser* parser) {
 	int i = 0;
 	for (std::vector<std::string>::iterator it = subLine->begin();
 			it != subLine->end(); ++it) {
-		std::cout << *it << std::endl;
 		if (*it == "(") {
 			std::vector<std::string> anotherVec = SubVectorService().run(
 					subLine, i + 1);
@@ -49,8 +48,5 @@ void Setq::parseBody(std::vector<std::string>* subLine, LispParser* parser) {
 		}
 		++i;
 	}
-	std::cout << "I am " << getIdentifier() << " , I am identified by "
-			<< variableName << " and my expression is "
-			<< myExpression->getResult() << std::endl;
 	parser->addGlobalVariable(variableName, myExpression);
 }
