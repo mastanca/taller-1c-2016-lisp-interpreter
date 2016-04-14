@@ -31,6 +31,7 @@
 #include "Setq.h"
 #include "SubVectorService.h"
 #include "Sum.h"
+#include "Sync.h"
 #include "ExpressionRunner.h"
 
 int LispParser::parseLispLine() {
@@ -75,6 +76,12 @@ LispParser::~LispParser() {
 		if (*it != NULL)
 			delete *it;
 	}
+
+	joinThreads();
+
+	expressionPointers.clear();
+
+
 	// TODO: WATCH HERE
 //	for (std::map<std::string, Expression*>::iterator it =
 //			globalVariables.begin(); it != globalVariables.end(); ++it) {
@@ -180,7 +187,11 @@ Function* LispParser::getFunction(std::string &string) {
 		// Will add to the heap control structure later
 		return aSetq;
 	}
-
+	if (string == LISP_SYNC) {
+		Sync* aSync = new Sync();
+		expressionPointers.push_back(aSync);
+		return aSync;
+	}
 //	if (string == "=")
 //		return "I am an equals";
 //	if (string == ">")
@@ -189,8 +200,6 @@ Function* LispParser::getFunction(std::string &string) {
 //		return "I am a less than";
 //	if (string == "defun")
 //		return "I am a defun";
-//	if (string == "sync")
-//		return "I am a sync";
 	return NULL;
 }
 
@@ -274,6 +283,6 @@ void LispParser::joinThreads() {
 		} //While iterating clean the list
 	}
 
-	//Clear the corrupted nodes
+	// Avoid valgrind error
 	runningThreads.clear();
 }

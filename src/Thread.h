@@ -14,6 +14,9 @@
 class Thread {
 private:
 	pthread_t myThread;
+	static void *runner(void *data);
+protected:
+	virtual void run() = 0;
 public:
 	// Constructor
 	Thread() : myThread() {}

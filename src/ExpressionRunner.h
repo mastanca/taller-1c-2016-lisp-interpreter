@@ -9,8 +9,9 @@
 #define SRC_EXPRESSIONRUNNER_H_
 
 #include "Expression.h"
+#include "Thread.h"
 
-class ExpressionRunner {
+class ExpressionRunner : public Thread {
 private:
 	Expression* expressionToRun;
 public:
