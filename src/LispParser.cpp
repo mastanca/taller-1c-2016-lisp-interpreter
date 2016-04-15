@@ -36,15 +36,17 @@
 
 int LispParser::parseLispLine() {
 	Expression * expression = getExpression(lispLine);
-	if (expression->getIdentifier() == LISP_SYNC){
-		// We found a sync, lets join the running threads before going on
-		joinThreads();
-	} else {
-		ExpressionRunner* aThread = new ExpressionRunner(expression);
-		runningThreads.push_back(aThread);
-		aThread->run();
+	// Check for invalid expression returned (maybe input was \n)
+	if (expression != NULL){
+		if (expression->getIdentifier() == LISP_SYNC){
+			// We found a sync, lets join the running threads before going on
+			joinThreads();
+		} else {
+			ExpressionRunner* aThread = new ExpressionRunner(expression);
+			runningThreads.push_back(aThread);
+			aThread->run();
+		}
 	}
-
 	return EXIT_SUCCESS;
 }
 

@@ -24,6 +24,7 @@ void Print::evaluate() {
 			it != arguments.end(); ++it) {
 		// Let's assume expression are grown ups and know how to
 		// represent themselves
+		(*it)->evaluate();
 		std::cout << (*it)->getResult();
 		// If the expression is not the last one then add a space after it
 		if (it != arguments.end())
