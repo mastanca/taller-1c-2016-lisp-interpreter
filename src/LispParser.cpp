@@ -33,6 +33,7 @@
 #include "Sum.h"
 #include "Sync.h"
 #include "ExpressionRunner.h"
+#include "Lock.h"
 
 int LispParser::parseLispLine() {
 	Expression * expression = getExpression(lispLine);
@@ -68,6 +69,8 @@ std::string LispParser::prepareLineForParsing(std::string* lispLine) {
 }
 
 void LispParser::setLispLine(std::vector<std::string>* lispLine) {
+	// Shared resources is accessed, locking needed
+	Lock lock(mutex);
 	this->lispLine = lispLine;
 }
 
@@ -119,15 +122,20 @@ Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
 			expressionToReturn = getExpression(&subvec);
 			i += subvec.size() - 1;
 		} else {
-			std::map<std::string,Expression*>::iterator it;
-			it = globalVariables.find(element);
-			if (it != globalVariables.end())
-				expressionToReturn = it->second;
+			expressionToReturn = getGlobalVariable(element);
 			i += element.size();
 		}
 		++i;
 	}
 	return expressionToReturn;
+}
+
+Expression* LispParser::getGlobalVariable(std::string tag){
+	// Shared resource is accessed, locking is needed
+	Lock lock(mutex);
+	std::map<std::string,Expression*>::iterator it;
+	it = globalVariables.find(tag);
+	return it->second;
 }
 
 Function* LispParser::getFunction(std::string &string) {
@@ -258,6 +266,8 @@ Expression* LispParser::parseFunction(std::vector<std::string>* lispLine,
 }
 
 void LispParser::addGlobalVariable(std::string tag, Expression* expression) {
+	// Shared resource accessed, needs locking
+	Lock lock(mutex);
 	globalVariables[tag] = expression;
 }
 

@@ -32,16 +32,6 @@ private:
 	std::vector<Expression*> expressionPointers;
 	// Structure to save the global variables
 	std::map<std::string, Expression*> globalVariables;
-	// Compares symbols and returns the corresponding
-	// function or NULL if the symbol was )
-	Function* getFunction(std::string &string);
-	// Returns a constant with its value
-	Expression* getConstant(std::string &string);
-	// Check whether the input is a number or not
-	bool isNumeric(std::string input, int numberBase);
-	// Pareses the function, goes recursive if it has to
-	Expression* parseFunction(std::vector<std::string>* lispLine, int* position,
-			std::string* element);
 	// Join my running threads
 	void joinThreads();
 	// Current position in the original lisp line
@@ -68,6 +58,20 @@ public:
 	void addGlobalVariable(std::string tag, Expression* expression);
 	// Clean instance variables for next run
 	void clean();
+private:
+	// Functions
+	// Compares symbols and returns the corresponding
+	// function or NULL if the symbol was )
+	Function* getFunction(std::string &string);
+	// Returns a constant with its value
+	Expression* getConstant(std::string &string);
+	// Check whether the input is a number or not
+	bool isNumeric(std::string input, int numberBase);
+	// Pareses the function, goes recursive if it has to
+	Expression* parseFunction(std::vector<std::string>* lispLine, int* position,
+			std::string* element);
+	// Returns a global variable expression
+	Expression* getGlobalVariable(std::string tag);
 };
 
 #endif /* SRC_LISPPARSER_H_ */
