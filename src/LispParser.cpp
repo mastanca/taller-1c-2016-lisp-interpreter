@@ -88,11 +88,11 @@ LispParser::~LispParser() {
 
 
 	// TODO: WATCH HERE
-//	for (std::map<std::string, Expression*>::iterator it =
-//			globalVariables.begin(); it != globalVariables.end(); ++it) {
-//		if (it->second != NULL)
-//			delete it->second;
-//	}
+	for (std::map<std::string, Expression*>::iterator it =
+			globalVariables.begin(); it != globalVariables.end(); ++it) {
+		if (it->second != NULL)
+			delete it->second;
+	}
 }
 
 Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
