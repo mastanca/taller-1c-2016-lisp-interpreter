@@ -44,7 +44,7 @@ int LispParser::parseLispLine() {
 		} else {
 			ExpressionRunner* aThread = new ExpressionRunner(expression);
 			runningThreads.push_back(aThread);
-			aThread->run();
+			aThread->start();
 		}
 	}
 	return EXIT_SUCCESS;

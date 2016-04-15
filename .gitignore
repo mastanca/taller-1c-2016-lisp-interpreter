@@ -134,3 +134,4 @@ local.properties
 .Trash-*
 
 /Debug/
+/ThreadSanitizer/
