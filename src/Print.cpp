@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "lispFunctionConstants.h"
+#include "Lock.h"
 
 #define SPACE " "
 
@@ -20,6 +21,7 @@ Print::~Print() {
 }
 
 void Print::evaluate() {
+	Lock lock(mutex);
 	for (std::vector<Expression*>::iterator it = arguments.begin();
 			it != arguments.end(); ++it) {
 		// Let's assume expression are grown ups and know how to

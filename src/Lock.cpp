@@ -14,6 +14,7 @@ Lock::Lock(Mutex &mutex) : aMutex(mutex) {
 }
 
 Lock::~Lock() {
+	// Upon destruction of lock, mutex is disabled
     aMutex.disableLock();
 }
 

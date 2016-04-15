@@ -8,11 +8,17 @@
 #ifndef SRC_LISPFUNCTIONS_PRINT_H_
 #define SRC_LISPFUNCTIONS_PRINT_H_
 
-#include "Function.h"
 #include <string>
+
+#include "Function.h"
+#include "lispFunctionConstants.h"
+#include "Mutex.h"
 
 
 class Print: public Function {
+private:
+	// To lock stdout
+	Mutex mutex;
 public:
 	Print() : Function(LISP_PRINT, "") {}
 	virtual ~Print();
