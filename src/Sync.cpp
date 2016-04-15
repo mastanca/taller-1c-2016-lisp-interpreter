@@ -6,6 +6,7 @@
  */
 
 #include "Sync.h"
+#include <string>
 
 Sync::~Sync() {
 	// TODO Auto-generated destructor stub

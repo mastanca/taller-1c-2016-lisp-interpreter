@@ -16,7 +16,8 @@ private:
 	Expression* expressionToRun;
 public:
 	// Constructor
-	explicit ExpressionRunner(Expression* expression) : expressionToRun(expression) {}
+	explicit ExpressionRunner(Expression* expression) :
+		expressionToRun(expression) {}
 	// Destroyer
 	virtual ~ExpressionRunner();
 	// Run the runner

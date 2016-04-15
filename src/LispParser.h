@@ -40,6 +40,7 @@ private:
 	unsigned int lastPos;
 	// Mutex for threading
 	Mutex mutex;
+
 public:
 	// Constructor
 	LispParser() :
@@ -58,6 +59,7 @@ public:
 	void addGlobalVariable(std::string tag, Expression* expression);
 	// Clean instance variables for next run
 	void clean();
+	
 private:
 	// Functions
 	// Compares symbols and returns the corresponding

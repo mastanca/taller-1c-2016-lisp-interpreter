@@ -9,6 +9,7 @@
 #define SRC_SYNC_H_
 
 #include "Function.h"
+#include <string>
 
 class Sync: public Function {
 public:
