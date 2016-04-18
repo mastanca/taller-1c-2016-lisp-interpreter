@@ -15,7 +15,6 @@
 
 class Expression {
 protected:
-	std::vector<Expression*> environment;
 	std::string identifier;
 public:
 	explicit Expression(std::string identifier) : identifier(identifier) {}

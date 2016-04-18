@@ -75,6 +75,8 @@ void LispParser::setLispLine(std::vector<std::string>* lispLine) {
 }
 
 LispParser::~LispParser() {
+	joinThreads();
+
 	// Delete all my allocated childs
 	for (std::vector<Expression*>::iterator it = expressionPointers.begin();
 			it != expressionPointers.end(); ++it) {
@@ -82,17 +84,8 @@ LispParser::~LispParser() {
 			delete *it;
 	}
 
-	joinThreads();
 
 	expressionPointers.clear();
-
-
-	// TODO: WATCH HERE
-	for (std::map<std::string, Expression*>::iterator it =
-			globalVariables.begin(); it != globalVariables.end(); ++it) {
-		if (it->second != NULL)
-			delete it->second;
-	}
 }
 
 Expression* LispParser::getExpression(std::vector<std::string>* lispLine) {
