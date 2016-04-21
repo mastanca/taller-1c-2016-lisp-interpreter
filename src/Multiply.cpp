@@ -16,18 +16,19 @@
 
 
 void Multiply::evaluate() {
-	float realResult = 0;
+	// Using 1 as neutral for multiplication
+	float realResult = 1;
 	float tempResult = 0;
 	for (std::vector<Expression*>::iterator it = arguments.begin();
 			it != arguments.end(); ++it) {
+		// Go over my arguments, evaluate and get their results
+		std::stringstream ss2;
 		(*it)->evaluate();
-		tempResult = atof(((*it)->getResult()).c_str());
-		if (realResult == 0) {
-			realResult = tempResult;
-		} else {
-			realResult *= tempResult;
-		}
+		ss2 << (*it)->getResult();
+		ss2 >> tempResult;
+		realResult *= tempResult;
 	}
+	// Get the float result as a string
 	std::stringstream ss;
 	ss << realResult;
 	result = ss.str();
