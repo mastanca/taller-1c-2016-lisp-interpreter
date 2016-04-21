@@ -15,9 +15,13 @@
 
 class Multiply : public Function {
 public:
+	// Constructor
 	Multiply() : Function(LISP_MULTIPLY, "") {}
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Destroyer
 	virtual ~Multiply();
+	// Get a reference to my result
 	std::string& getResult();
 };
 

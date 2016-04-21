@@ -15,9 +15,13 @@
 
 class Sum : public Function {
 public:
+	// Constructor
 	Sum() : Function(LISP_SUM, "") {}
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Destroyer
 	virtual ~Sum();
+	// Get reference to my result
 	std::string& getResult();
 };
 

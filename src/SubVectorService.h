@@ -19,10 +19,13 @@ private:
 	uint closingOnePosition;
 	uint closingParenthesisCount;
 public:
+	// Constructor
 	SubVectorService() :
 			counter(0), openingParenthesisCount(0), closingOnePosition(0),
 			closingParenthesisCount(0) {}
+	// Return a subvector from vector, starting from offset
 	std::vector<std::string> run(std::vector<std::string>* vector, uint offset);
+	// Destroyer
 	virtual ~SubVectorService();
 };
 

@@ -13,12 +13,16 @@
 
 class LispLineValidator {
 private:
+	// Vector of the words of a lisp line to validate
 	std::vector<std::string>* lispLine;
 public:
+	// Constructor
 	explicit LispLineValidator(std::vector<std::string>* lispLine) :
 			lispLine(lispLine) {
 	}
+	// Destroyer
 	virtual ~LispLineValidator();
+	// Return whether the line is valid or not
 	bool isValidLine();
 };
 

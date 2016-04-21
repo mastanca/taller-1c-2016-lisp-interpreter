@@ -14,9 +14,13 @@
 
 class If: public Function {
 public:
+	// Constructor
 	If() : Function(LISP_IF, "") {}
+	// Destroyer
 	virtual ~If();
+	// Get a reference to my result
 	std::string& getResult();
+	// Do what I know to do, evaluate myself
 	void evaluate();
 };
 

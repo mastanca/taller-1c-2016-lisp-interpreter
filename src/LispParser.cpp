@@ -193,14 +193,6 @@ Function* LispParser::getFunction(std::string &string) {
 		expressionPointers.push_back(aSync);
 		return aSync;
 	}
-//	if (string == "=")
-//		return "I am an equals";
-//	if (string == ">")
-//		return "I am a bigger than";
-//	if (string == "<")
-//		return "I am a less than";
-//	if (string == "defun")
-//		return "I am a defun";
 	return NULL;
 }
 

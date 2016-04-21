@@ -1,5 +1,5 @@
 /*
- * ReentrantLock.h
+ * Lock.h
  *
  *  Created on: Apr 12, 2016
  *      Author: mastanca
@@ -8,6 +8,7 @@
 #ifndef SRC_LOCK_H_
 #define SRC_LOCK_H_
 
+// Forward declaration
 class Mutex;
 
 class Lock {

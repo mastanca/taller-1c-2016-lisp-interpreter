@@ -16,9 +16,13 @@ private:
 	// Flattens the result
 	void flatten();
 public:
+	// Constructor
 	Append() : Function(LISP_APPEND, "()") {}
+	// Destroyer
 	virtual ~Append();
+	// Return reference to my result
 	std::string& getResult();
+	// Do what I know to do, evaluate myself
 	void evaluate();
 };
 

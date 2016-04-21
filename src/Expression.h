@@ -15,12 +15,18 @@
 
 class Expression {
 protected:
+	// The string that identifies myself
 	std::string identifier;
 public:
+	// Constructor
 	explicit Expression(std::string identifier) : identifier(identifier) {}
+	// Destroyer
 	virtual ~Expression();
+	// Do what I know to do, evaluate myself
 	virtual void evaluate() = 0;
+	// Get my identifier
 	const std::string& getIdentifier() const;
+	// Get a reference to my result
 	virtual std::string& getResult() = 0;
 };
 

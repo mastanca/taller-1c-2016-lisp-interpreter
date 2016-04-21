@@ -26,13 +26,13 @@ std::string& Cdr::getResult() {
 
 void Cdr::evaluate() {
 	// Im much like my older sister Car, should only get a list as input so if
-	// arguments has more than one element something is wrong and we will return
+	// arguments has more than one element something is wrong and I will return
 	// "()",
 	if (arguments.size() > 1 || arguments.size() == 0){
 		result = "()";
 	} else {
 		List* inputList = ((List*)(getArguments().front()));
-		// If my arguement arguments is empty we return ""
+		// If my arguement arguments is empty we return "()"
 		if (inputList->getArguments().size() == 0){
 			result = "()";
 		}else {

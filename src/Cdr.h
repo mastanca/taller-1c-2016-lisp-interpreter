@@ -14,9 +14,13 @@
 
 class Cdr: public Function {
 public:
+	// Constructor
 	Cdr() : Function(LISP_CDR, "") {}
+	// Destroyer
 	virtual ~Cdr();
+	// Get reference to my result
 	std::string& getResult();
+	// Do what I know to do, evaluate myself
 	void evaluate();
 };
 

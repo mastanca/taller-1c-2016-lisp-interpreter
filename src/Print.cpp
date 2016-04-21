@@ -24,8 +24,7 @@ void Print::evaluate() {
 	Lock lock(mutex);
 	for (std::vector<Expression*>::iterator it = arguments.begin();
 			it != arguments.end(); ++it) {
-		// Let's assume expression are grown ups and know how to
-		// represent themselves
+		// Go through my arguments and tell them to evaluate
 		(*it)->evaluate();
 		std::cout << (*it)->getResult();
 		// If the expression is not the last one then add a space after it

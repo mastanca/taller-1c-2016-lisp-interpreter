@@ -20,9 +20,13 @@ private:
 	// To lock stdout
 	Mutex mutex;
 public:
+	// Constructor
 	Print() : Function(LISP_PRINT, "") {}
+	// Destroyer
 	virtual ~Print();
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Get reference to my result
 	std::string& getResult();
 };
 

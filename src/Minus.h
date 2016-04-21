@@ -14,9 +14,13 @@
 
 class Minus : public Function {
 public:
+	// Constructor
 	Minus() : Function(LISP_MINUS, "") {}
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Destroyer
 	virtual ~Minus();
+	// Get a reference to my result
 	std::string& getResult();
 };
 

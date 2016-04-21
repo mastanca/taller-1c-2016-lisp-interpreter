@@ -14,9 +14,13 @@
 
 class List: public Function {
 public:
+	// Constructor
 	List() : Function(LISP_LIST, "()") {}
+	// Destroyer
 	virtual ~List();
+	// Get a reference to my result
 	std::string& getResult();
+	// Do what I know to do, evaluate myself
 	void evaluate();
 };
 

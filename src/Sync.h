@@ -13,9 +13,13 @@
 
 class Sync: public Function {
 public:
+	// Constructo
 	Sync() : Function(LISP_SYNC, "") {}
+	// Destroyer
 	virtual ~Sync();
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Get reference to my result
 	std::string& getResult();
 };
 

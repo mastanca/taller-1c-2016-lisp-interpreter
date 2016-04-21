@@ -13,9 +13,13 @@
 
 class Divide : public Function {
 public:
+	// Constructor
 	Divide() : Function(LISP_DIVIDE, "") {}
+	// Do what I know to do, evaluate myself
 	void evaluate();
+	// Destroyer
 	virtual ~Divide();
+	// Get a reference to my result
 	std::string& getResult();
 };
 
