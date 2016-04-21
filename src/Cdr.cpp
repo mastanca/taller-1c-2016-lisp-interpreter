@@ -36,6 +36,7 @@ void Cdr::evaluate() {
 		if (inputList->getArguments().size() == 0){
 			result = "()";
 		}else {
+			inputList->evaluate();
 			std::stringstream partialResult;
 			partialResult << "(";
 			// We skip the first one and the space
