@@ -36,6 +36,6 @@ void Sum::evaluate() {
 	result = ss.str();
 }
 
-std::string Sum::getResult() {
+std::string& Sum::getResult() {
 	return result;
 }

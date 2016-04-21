@@ -22,7 +22,7 @@ Setq::~Setq() {
 void Setq::evaluate() {
 }
 
-std::string Setq::getResult() {
+std::string& Setq::getResult() {
 	return result;
 }
 

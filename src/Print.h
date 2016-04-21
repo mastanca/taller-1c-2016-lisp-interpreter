@@ -23,7 +23,7 @@ public:
 	Print() : Function(LISP_PRINT, "") {}
 	virtual ~Print();
 	void evaluate();
-	std::string getResult();
+	std::string& getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_PRINT_H_ */

@@ -18,7 +18,7 @@ public:
 	Multiply() : Function(LISP_MULTIPLY, "") {}
 	void evaluate();
 	virtual ~Multiply();
-	std::string getResult();
+	std::string& getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_MULTIPLY_H_ */

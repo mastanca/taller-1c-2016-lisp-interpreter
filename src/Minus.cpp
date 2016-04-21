@@ -41,7 +41,7 @@ void Minus::evaluate() {
 Minus::~Minus() {
 }
 
-std::string Minus::getResult() {
+std::string& Minus::getResult() {
 	return result;
 }
 

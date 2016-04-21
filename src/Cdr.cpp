@@ -20,7 +20,7 @@
 Cdr::~Cdr() {
 }
 
-std::string Cdr::getResult() {
+std::string& Cdr::getResult() {
 	return result;
 }
 

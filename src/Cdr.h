@@ -16,7 +16,7 @@ class Cdr: public Function {
 public:
 	Cdr() : Function(LISP_CDR, "") {}
 	virtual ~Cdr();
-	std::string getResult();
+	std::string& getResult();
 	void evaluate();
 };
 

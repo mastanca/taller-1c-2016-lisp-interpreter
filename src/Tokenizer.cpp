@@ -19,7 +19,7 @@ Tokenizer::Tokenizer() {
 Tokenizer::~Tokenizer() {
 }
 
-std::vector<std::string>* Tokenizer::tokenize(std::string string) {
+std::vector<std::string>* Tokenizer::tokenize(const std::string& string) {
 	char *saveptr;
 	char* toTokenize = (char*)string.c_str();
 	char* tokenized(strtok_r(toTokenize, " ", &saveptr));

@@ -36,6 +36,6 @@ void Print::evaluate() {
 	std::cout << std::endl;
 }
 
-std::string Print::getResult() {
-	return LISP_PRINT;
+std::string& Print::getResult() {
+	return (std::string&)this->getIdentifier();
 }

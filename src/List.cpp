@@ -18,7 +18,7 @@
 List::~List() {
 }
 
-std::string List::getResult() {
+std::string& List::getResult() {
 	return result;
 }
 

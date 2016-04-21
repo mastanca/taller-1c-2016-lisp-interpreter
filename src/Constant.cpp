@@ -13,10 +13,10 @@
 Constant::~Constant() {
 }
 
-std::string Constant::getResult() {
+std::string& Constant::getResult() {
 	std::stringstream ss;
 	ss << value;
-	std::string result = ss.str();
+	result = ss.str();
 	return result;
 }
 

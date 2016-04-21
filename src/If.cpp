@@ -13,7 +13,7 @@
 If::~If() {
 }
 
-std::string If::getResult() {
+std::string& If::getResult() {
 	return result;
 }
 

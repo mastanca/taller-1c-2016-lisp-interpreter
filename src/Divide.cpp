@@ -39,7 +39,7 @@ void Divide::evaluate() {
 Divide::~Divide() {
 }
 
-std::string Divide::getResult() {
+std::string& Divide::getResult() {
 	return result;
 }
 

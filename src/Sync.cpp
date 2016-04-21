@@ -15,6 +15,6 @@ void Sync::evaluate() {
 	// Has no use but it should be implemented
 }
 
-std::string Sync::getResult() {
+std::string& Sync::getResult() {
 	return result;
 }

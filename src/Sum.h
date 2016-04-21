@@ -18,7 +18,7 @@ public:
 	Sum() : Function(LISP_SUM, "") {}
 	void evaluate();
 	virtual ~Sum();
-	std::string getResult();
+	std::string& getResult();
 };
 
 

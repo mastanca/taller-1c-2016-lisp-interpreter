@@ -17,7 +17,7 @@ public:
 	Minus() : Function(LISP_MINUS, "") {}
 	void evaluate();
 	virtual ~Minus();
-	std::string getResult();
+	std::string& getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_MINUS_H_ */

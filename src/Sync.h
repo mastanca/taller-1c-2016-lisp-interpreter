@@ -16,7 +16,7 @@ public:
 	Sync() : Function(LISP_SYNC, "") {}
 	virtual ~Sync();
 	void evaluate();
-	std::string getResult();
+	std::string& getResult();
 };
 
 #endif /* SRC_SYNC_H_ */

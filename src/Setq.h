@@ -24,7 +24,7 @@ public:
 	Setq() : Function(LISP_SETQ, ""), myExpression(NULL), variableName("") {}
 	virtual ~Setq();
 	void evaluate();
-	std::string getResult();
+	std::string& getResult();
 	void parseBody(std::vector<std::string>* subLine, LispParser* parser);
 };
 

@@ -16,7 +16,7 @@ class Car: public Function {
 public:
 	Car() : Function(LISP_CAR, "") {}
 	virtual ~Car();
-	std::string getResult();
+	std::string& getResult();
 	void evaluate();
 };
 

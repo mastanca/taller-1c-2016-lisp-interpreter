@@ -18,7 +18,7 @@
 Append::~Append() {
 }
 
-std::string Append::getResult() {
+std::string& Append::getResult() {
 	return result;
 }
 

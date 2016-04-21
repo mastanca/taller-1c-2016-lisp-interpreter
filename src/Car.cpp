@@ -12,7 +12,7 @@
 Car::~Car() {
 }
 
-std::string Car::getResult() {
+std::string& Car::getResult() {
 	return result;
 }
 

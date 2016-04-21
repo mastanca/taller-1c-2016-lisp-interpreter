@@ -16,7 +16,7 @@ public:
 	Divide() : Function(LISP_DIVIDE, "") {}
 	void evaluate();
 	virtual ~Divide();
-	std::string getResult();
+	std::string& getResult();
 };
 
 #endif /* SRC_LISPFUNCTIONS_DIVIDE_H_ */

@@ -16,7 +16,7 @@ class If: public Function {
 public:
 	If() : Function(LISP_IF, "") {}
 	virtual ~If();
-	std::string getResult();
+	std::string& getResult();
 	void evaluate();
 };
 

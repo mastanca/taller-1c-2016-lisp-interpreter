@@ -37,6 +37,6 @@ void Multiply::evaluate() {
 Multiply::~Multiply() {
 }
 
-std::string Multiply::getResult() {
+std::string& Multiply::getResult() {
 	return result;
 }
