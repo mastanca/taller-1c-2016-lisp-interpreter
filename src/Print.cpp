@@ -28,7 +28,7 @@ void Print::evaluate() {
 		(*it)->evaluate();
 		std::cout << (*it)->getResult();
 		// If the expression is not the last one then add a space after it
-		if (it != arguments.end())
+		if (it != arguments.end() - 1)
 			std::cout << SPACE;
 	}
 	// Add trailing line jump
