@@ -21,6 +21,7 @@ void Thread::join() {
 }
 
 void* Thread::runner(void *data) {
+	// Self receive me and run me, then return self
     Thread *self = (Thread*)data;
     self->run();
     return data;

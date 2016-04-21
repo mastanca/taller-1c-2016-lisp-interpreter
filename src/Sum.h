@@ -14,10 +14,8 @@
 #include "lispFunctionConstants.h"
 
 class Sum : public Function {
-private:
-	float realResult;
 public:
-	Sum() : Function(LISP_SUM, ""), realResult(0) {}
+	Sum() : Function(LISP_SUM, "") {}
 	void evaluate();
 	virtual ~Sum();
 	std::string getResult();

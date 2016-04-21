@@ -9,7 +9,6 @@
 #include <string>
 
 Sync::~Sync() {
-	// TODO Auto-generated destructor stub
 }
 
 void Sync::evaluate() {
