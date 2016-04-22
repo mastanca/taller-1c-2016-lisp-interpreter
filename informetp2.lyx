@@ -111,9 +111,9 @@ Objetivo
 \end_layout
 
 \begin_layout Standard
-El objetivo de este trabajo practico fue la implementacion de un compilador
- de LISP con multithreading, utlizando la libreria pthread, y aplicando
- los conocimientos sobre programacion orientada a objetos.
+El objetivo de este trabajo practico fue la implementación de un compilador
+ de LISP con multithreading, utilizando la librería pthread, y aplicando
+ conocimientos sobre programación orientada a objetos.
 \end_layout
 
 \begin_layout Section*
@@ -123,7 +123,7 @@ Configuración del entorno
 \begin_layout Standard
 El entorno de trabajo elegido para la realización del trabajo practico fue
  una PC con SO Linux Mint 17.3 y compilador gcc 4.8 configurado para utilizar
- el estándar de C++98 y la libreria pthread.
+ el estándar de C++98 y la librería pthread.
  
 \end_layout
 
@@ -133,17 +133,20 @@ Explicación de enunciado
 
 \begin_layout Standard
 El trabajo consiste en realizar un compilador de LISP que permita enviar
- instrucciones de LISP por el entrada estandar, hacer el correspondiente
- analisis sintactico y semantico, y ejecutarlas.
- Como novedad se incorpora la capacidad de realizar el proceso de compilacion
- en paralelo, osea con la utilizacion de threads.
+ instrucciones de LISP por la entrada estándar, hacer el correspondiente
+ análisis sintáctico y semántico, y ejecutarlas.
+ Como novedad se incorpora la capacidad de realizar el proceso de compilación
+ en paralelo, osea con la utilización de threads.
  
 \begin_inset Newline newline
 \end_inset
 
 El programa parseara y compilara linea a linea.
- En caso de encontrar una expresion Sync esperara a los threads que estan
- ejecutandose en ese momento para continuar.
+ En caso de encontrar una expresión 
+\emph on
+Sync
+\emph default
+ esperara a los threads que estén ejecutándose en ese momento para continuar.
  Se repite el proceso hasta que se encuentra el fin de archivo.
 \end_layout
 
@@ -152,17 +155,18 @@ Desarrollo
 \end_layout
 
 \begin_layout Standard
-La parte mas interesante en terminos de diseño del trabajo practico es la
- estructura de clases de las expres¡ones y funciones de LISP.
+La parte mas interesante en términos de diseño del trabajo practico es la
+ estructura de clases de las expresiones y funciones de LISP.
  En un principio se encaro el trabajo con un enfoque bottom-up, generando
  las clases de funciones de mas bajo nivel (
 \emph on
 Sum, Divide
 \emph default
 , etc.).
- Luego al ver la complejidad de la situacion y que el parser recursivo de
- la solucion que finalmente se adopto fue necesario tomar un enfoque mas
- global, es decir empezar por planificar el manejo de 
+ Luego, al ver la complejidad de la situación y la necesidad de implementar
+ el parser recursivo de la solución que finalmente se adopto, fue necesario
+ tomar un enfoque mas global, es decir, empezar por planificar el manejo
+ de 
 \emph on
 Expressions 
 \emph default
@@ -176,18 +180,18 @@ Entonces, se creo la clase
 \emph on
 Expression
 \emph default
- y se modelo todo el parser con esta clase.
+ y se modeló todo el parser con esta clase.
  Luego se creo la clase 
 \emph on
 Constant
 \emph default
- y una funcion simple como 
+ y una función simple como 
 \emph on
 Sum
 \emph default
 , que permitieran probar parseos de lineas simples.
- Una vez resuelto este problema y al notar que habia funciones que compartian
- varias caracteristicas con la funcion 
+ Una vez resuelto este problema y al notar que había funciones que compartían
+ varias características con la función 
 \emph on
 Sum
 \emph default
@@ -214,7 +218,7 @@ Expression
 \emph on
 Expressions
 \emph default
- y luego cada una de ellas a traves del polimorfismo sepa como evaluarse.
+ y luego cada una de ellas a través del polimorfismo sepa como evaluarse.
 \end_layout
 
 \begin_layout Standard
@@ -250,7 +254,10 @@ centering
 
 \begin_inset Graphics
 	filename diagrama_clases.png
-	width 100text%
+	width 80page%
+	height 70pheight%
+	keepAspectRatio
+	rotateAngle 90
 	groupId common_image
 
 \end_inset
@@ -288,15 +295,15 @@ Conclusión
 \end_layout
 
 \begin_layout Standard
-Este trabajo necesito de la utilizacion de conocimientos bastante variados
+Este trabajo necesitó de la utilización de conocimientos bastante variados
  y complejos.
- Que la solucion final propuesta utilize recursividad le agrega una complejidad
- considerable, por el hecho de que esta hace mas dificil el seguimiento
- de la elaboracion del codigo, por ejemplo al querer debuggear las estructuras
+ Que la solución final propuesta utilice recursividad le agrega una complejidad
+ considerable, por el hecho de que esta hace mas difícil el seguimiento
+ de la elaboración del código, por ejemplo al querer debuggear las estructuras
  recursivas que se generan.
- No obstante, una vez resuleto el tema recursivo, el modelado de las funciones
- salio de forma natural y la estructura que se genero permitia que agregar
- nuevas funciones el programa no llevara mas de unos pocos minutos.
+ No obstante, una vez resuelto el problema recursivo, el modelado de las
+ funciones salio de forma natural y la estructura que se genero permitía
+ que agregar nuevas funciones el programa no llevara mas de unos pocos minutos.
  
 \begin_inset Newline newline
 \end_inset
